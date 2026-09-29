@@ -1,0 +1,3 @@
+Start: 5
+After addTenByPointer:   15
+After doubleByReference: 30

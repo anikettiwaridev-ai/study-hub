@@ -1,0 +1,8 @@
+Inside modifyValue function: x = 15
+After modifyValue function: a = 10
+Inside modifyReference function: y = 25
+After modifyReference function: b = 25
+Inside modifyValue function: x = 30
+After modifyValue with b: b = 25
+Inside modifyReference function: y = 15
+After modifyReference with a: a = 15

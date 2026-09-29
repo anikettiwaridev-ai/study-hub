@@ -1,0 +1,2 @@
+Compile error on line 7:
+invalid use of member 'Counter::id' in static member function

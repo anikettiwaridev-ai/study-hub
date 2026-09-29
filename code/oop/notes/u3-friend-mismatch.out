@@ -1,0 +1,2 @@
+Compile error on line 10:
+'int Complex::real' is private within this context

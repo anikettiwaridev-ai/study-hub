@@ -1,0 +1,9 @@
+char:      A
+int:       25110002
+float:     8.75
+double:    3.14159
+bool:      1
+boolalpha: true
+short:     2
+long:      1400000000
+long long: 9000000000000000000

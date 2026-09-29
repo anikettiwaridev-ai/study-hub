@@ -1,0 +1,7 @@
+class with one int and two functions: 4
+A (char,int,int,char,int,int*):       32
+A with char b:                        24
+A largest first:                      24
+B as written:                         80
+B pointer first:                      72
+B array first:                        80

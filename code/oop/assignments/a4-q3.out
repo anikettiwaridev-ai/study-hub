@@ -1,0 +1,5 @@
+Invalid radius -3, using 1
+(3,4) inside c1? yes
+(6,1) inside c1? no
+c1 and c2 intersect? yes
+c1 and c3 intersect? no

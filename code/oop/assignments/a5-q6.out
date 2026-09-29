@@ -1,0 +1,7 @@
+Company: PEC Softworks, retirement age: 60, max salary: 200000
+101  Asha | annual 1020000 | years to retire 30 | 42.5% of max
+102  Ravi | annual 1440000 | years to retire 15 | 60% of max
+103  Meera | annual 2400000 | years to retire 2 | 100% of max
+Total employees = 3
+Average monthly salary = 135000
+After policy change: 101  Asha | annual 1020000 | years to retire 32 | 42.5% of max

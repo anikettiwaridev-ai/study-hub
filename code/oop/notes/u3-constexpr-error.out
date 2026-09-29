@@ -1,0 +1,2 @@
+Compile error on line 6:
+call to non-'constexpr' function 'int readLimit()'

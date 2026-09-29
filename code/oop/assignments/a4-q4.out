@@ -1,0 +1,4 @@
+isPrime(29)   = true
+factorial(10) = 3628800
+gcd(84, 36)   = 12
+power(2, 10)  = 1024

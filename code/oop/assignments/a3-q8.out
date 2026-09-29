@@ -1,0 +1,2 @@
+Leaky sum = 15 (5 ints, 20 bytes, never returned)
+Fixed sum = 15, max = 5

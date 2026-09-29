@@ -1,0 +1,5 @@
+sizeof(arr) in main = 16 (the whole array)
+sizeof(p) = 8 (a pointer)
+sizeof inside the function = 8 (a pointer)
+sizeof through int (&arr)[4] = 16
+length = 4

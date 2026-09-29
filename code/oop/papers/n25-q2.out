@@ -1,0 +1,10 @@
+Created = 0, destroyed = 0, alive = 0
+Object 1 created
+Object 2 created
+I am object 2 of 2
+Object 3 created
+Created = 3, destroyed = 0, alive = 3
+Object 3 destroyed
+Created = 3, destroyed = 1, alive = 2
+Object 2 destroyed
+Object 1 destroyed

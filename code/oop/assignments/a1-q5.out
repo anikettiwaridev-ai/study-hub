@@ -1,0 +1,5 @@
+Enter two integers: Without casting: 3
+Implicit (one side made double): 3.5
+Explicit C-style: 3.5
+Explicit C++ style: 3.5
+Too late: 3

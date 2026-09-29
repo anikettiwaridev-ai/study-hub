@@ -1,0 +1,8 @@
+char:      1 byte
+int:       4 bytes
+float:     4 bytes
+double:    8 bytes
+bool:      1 byte
+short:     2 bytes
+long:      4 bytes (4 on Windows, 8 on Linux)
+long long: 8 bytes

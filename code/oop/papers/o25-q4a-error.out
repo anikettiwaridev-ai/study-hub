@@ -1,0 +1,2 @@
+Compile error on line 4:
+ambiguating new declaration of 'int strlen(const char*)'

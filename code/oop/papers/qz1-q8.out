@@ -1,0 +1,2 @@
+Compile error on line 10:
+call of overloaded 'test(int, int)' is ambiguous

@@ -1,0 +1,5 @@
+array1: 10 20 30 40 50 (length 5)
+array2: 1 2 3 (length 3)
+array3 = array1 - array2: 9 18 27 40 50 (length 5)
+array1 > array2 ? true
+Larger array (array4): 10 20 30 40 50 (length 5)

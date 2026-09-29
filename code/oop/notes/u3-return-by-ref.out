@@ -1,0 +1,11 @@
+chain by reference:
+value = 6
+chain by copy:
+  (copy made)
+  (copy made)
+value = 16
+pass by value:
+  (copy made)
+value = 16
+pass by const reference:
+value = 16

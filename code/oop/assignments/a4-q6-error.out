@@ -1,0 +1,2 @@
+Compile error on line 7:
+uninitialized const member in 'const long int' [-fpermissive]

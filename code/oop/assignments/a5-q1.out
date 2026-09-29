@@ -1,0 +1,7 @@
+P1 = (2, 3), P2 = (6, 6)
+Euclidean distance = 5
+Mid point = (4, 4)
+Dot product = 30
+2D cross product magnitude = -6
+P1 equal to P2? false
+P1 equal to P1? true

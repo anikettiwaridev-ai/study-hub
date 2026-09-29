@@ -1,0 +1,100 @@
+
+1. Palindromic number pyramid
+2. Alphabetic palindromic pyramid
+3. Hollow number pyramid
+4. Inverted number pyramid
+5. Diamond number pattern
+6. Hollow diamond
+7. Exit
+Choice: N = 5
+        1
+      2 1 2
+    3 2 1 2 3
+  4 3 2 1 2 3 4
+5 4 3 2 1 2 3 4 5
+
+1. Palindromic number pyramid
+2. Alphabetic palindromic pyramid
+3. Hollow number pyramid
+4. Inverted number pyramid
+5. Diamond number pattern
+6. Hollow diamond
+7. Exit
+Choice: N = 5
+        A
+      B A B
+    C B A B C
+  D C B A B C D
+E D C B A B C D E
+
+1. Palindromic number pyramid
+2. Alphabetic palindromic pyramid
+3. Hollow number pyramid
+4. Inverted number pyramid
+5. Diamond number pattern
+6. Hollow diamond
+7. Exit
+Choice: N = 6
+     1
+    1 1
+   1   1
+  1     1
+ 1       1
+11111111111
+
+1. Palindromic number pyramid
+2. Alphabetic palindromic pyramid
+3. Hollow number pyramid
+4. Inverted number pyramid
+5. Diamond number pattern
+6. Hollow diamond
+7. Exit
+Choice: N = 5
+1 2 3 4 5
+  2 3 4 5
+    3 4 5
+      4 5
+        5
+
+1. Palindromic number pyramid
+2. Alphabetic palindromic pyramid
+3. Hollow number pyramid
+4. Inverted number pyramid
+5. Diamond number pattern
+6. Hollow diamond
+7. Exit
+Choice: N = 4
+      1
+    2 1 2
+  3 2 1 2 3
+4 3 2 1 2 3 4
+  3 2 1 2 3
+    2 1 2
+      1
+
+1. Palindromic number pyramid
+2. Alphabetic palindromic pyramid
+3. Hollow number pyramid
+4. Inverted number pyramid
+5. Diamond number pattern
+6. Hollow diamond
+7. Exit
+Choice: N = 5
+        *
+      *   *
+    *       *
+  *           *
+*               *
+  *           *
+    *       *
+      *   *
+        *
+
+1. Palindromic number pyramid
+2. Alphabetic palindromic pyramid
+3. Hollow number pyramid
+4. Inverted number pyramid
+5. Diamond number pattern
+6. Hollow diamond
+7. Exit
+Choice: Bye

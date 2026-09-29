@@ -1,0 +1,2 @@
+Compile error on line 32:
+call of overloaded 'Student(int)' is ambiguous

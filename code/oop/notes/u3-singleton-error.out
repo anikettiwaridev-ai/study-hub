@@ -1,0 +1,2 @@
+Compile error on line 9:
+'Student::Student()' is private within this context

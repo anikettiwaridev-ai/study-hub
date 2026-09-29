@@ -1,0 +1,4 @@
+Before any object: 0
+After three: 3
+Through an object also works: 3
+id = 2

@@ -1,0 +1,24 @@
+s1:
+  [parameterized constructor for Asha]
+e) Student s2 = s1;
+  [copy constructor]
+f) Student s3(s1);
+  [copy constructor]
+g) Student s4; s4 = s1;
+  [default constructor]
+  [copy assignment operator]
+k) change the copies, check the original:
+s1: roll 1, Asha, marks[0] = 70
+s2: roll 1, Asha, marks[0] = 99
+s4: roll 1, Changed, marks[0] = 70
+i) three kinds of object:
+  [parameterized constructor for Local]
+  [parameterized constructor for Heap]
+dynamic: roll 6, Heap, marks[0] = 70
+  [destructor for Heap]
+end of main: automatic objects die in reverse order
+  [destructor for Local]
+  [destructor for Changed]
+  [destructor for Asha]
+  [destructor for Asha]
+  [destructor for Asha]

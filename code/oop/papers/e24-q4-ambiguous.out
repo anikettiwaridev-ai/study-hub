@@ -1,0 +1,2 @@
+Compile error on line 13:
+ambiguous overload for 'operator+' (operand types are 'String' and 'String')

@@ -1,0 +1,2 @@
+Compile error on line 3:
+default argument missing for parameter 2 of 'void fun(int, int)'

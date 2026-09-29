@@ -1,0 +1,6 @@
+Enter two integers: a & b  = 2
+a | b  = 7
+a ^ b  = 5
+~a     = -7
+a << 1 = 12
+a >> 1 = 3

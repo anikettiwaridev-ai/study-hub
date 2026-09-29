@@ -1,0 +1,14 @@
+Transactions:
+  Issued "C++ Primer" on day 1
+  "C++ Primer" is already issued
+  Returned "C++ Primer" on day 10, fine 0
+  Issued "C++ Primer" on day 12
+  Returned "C++ Primer" on day 30, fine 8
+  Issued "Clean Code" on day 3
+  Returned "Clean Code" on day 27, fine 20
+  Issued "CLRS" on day 5
+  Returned "CLRS" on day 12, fine 0
+  Issued "C++ Primer" on day 31
+  Returned "C++ Primer" on day 40, fine 0
+Most issued: C++ Primer (3 times)
+Maximum fine: Clean Code (Rs 20)

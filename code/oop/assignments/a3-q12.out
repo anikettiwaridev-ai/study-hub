@@ -1,0 +1,3 @@
+After swapByValue:     x = 10, y = 20  (not swapped)
+After swapByReference: x = 20, y = 10  (swapped)
+After swapByPointer:   x = 10, y = 20  (swapped back)

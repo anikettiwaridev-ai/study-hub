@@ -1,0 +1,5 @@
+main.cpp uses Geometry.h:
+  rectangle 4 x 6: area 24, perimeter 20
+  square 5: area 25, perimeter 20
+circles.cpp uses Geometry.h too:
+  circle r = 3: area 28.2743, perimeter 18.8495

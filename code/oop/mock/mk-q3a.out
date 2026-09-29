@@ -1,0 +1,7 @@
+v1 = [ 1 2 3 ] size 3
+v2 = [ 10 20 30 40 ] size 4
+v3 = v1 + v2 = [ 11 22 33 40 ] size 4
+v4 (copy of v1) == v1 ? true
+v1 == v2 ? false
+after changing v5[0]: v3 = [ 11 22 33 40 ] size 4
+                      v5 = [ 999 22 33 40 ] size 4

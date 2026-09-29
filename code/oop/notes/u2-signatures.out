@@ -1,0 +1,4 @@
+1. no argument, no return value
+2. no argument, returns 7
+3. argument 5, no return value
+4. argument 6, returns 36
