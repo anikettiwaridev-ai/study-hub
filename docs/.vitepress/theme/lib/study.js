@@ -33,3 +33,14 @@ export function applyToPage() {
     .querySelectorAll('.vp-doc details.details')
     .forEach((d) => (d.open = trapsOnly.value || !solutionsHidden.value))
 }
+
+// The sidebar is one list for every subject, with each subject collapsed. Open the
+// groups that contain the current page (VitePress does not do this for nested groups).
+export function openActiveSidebarGroups() {
+  if (typeof document === 'undefined') return
+  for (let pass = 0; pass < 4; pass++) {
+    const closed = document.querySelectorAll('.VPSidebar .VPSidebarItem.collapsed.has-active')
+    if (!closed.length) break
+    closed.forEach((g) => g.querySelector(':scope > .item')?.click())
+  }
+}

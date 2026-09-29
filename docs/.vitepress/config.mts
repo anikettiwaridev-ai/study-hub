@@ -1,6 +1,6 @@
 import { defineConfig } from 'vitepress'
 import { withPwa } from '@vite-pwa/vitepress'
-import { liveSubjects } from './subjects.js'
+import { subjects, liveSubjects } from './subjects.js'
 
 // GitHub Pages serves a project site from /<repo>/. The deploy workflow sets BASE.
 const base = process.env.BASE || '/'
@@ -41,12 +41,23 @@ export default withPwa(
         ...liveSubjects.map((s) => ({ text: s.id.toUpperCase(), link: `/${s.id}/` })),
         { text: 'Using this site', link: '/guide' },
       ],
-      sidebar: Object.fromEntries(
-        liveSubjects.map((s) => [
-          `/${s.id}/`,
-          [...s.sidebar, { text: 'Using this site', link: '/guide' }],
-        ]),
-      ),
+      // One sidebar for the whole site. Every subject is a collapsible group; the group
+      // holding the current page opens by itself. A subject without a sidebar yet still
+      // gets a group, so the list of subjects is the same on every page.
+      sidebar: [
+        {
+          text: 'Study hub',
+          items: [
+            { text: 'All subjects', link: '/' },
+            { text: 'Using this site', link: '/guide' },
+          ],
+        },
+        ...subjects.map((s) =>
+          s.sidebar
+            ? { text: s.name, collapsed: true, items: s.sidebar }
+            : { text: s.name, collapsed: true, items: [{ text: 'Not added yet' }] },
+        ),
+      ],
       search: { provider: 'local' },
       outline: { level: [2, 3], label: 'On this page' },
       docFooter: { prev: 'Previous', next: 'Next' },

@@ -144,7 +144,7 @@ When a paper's page is ready, set its `href` in the data file (for example `href
 
 ## Adding a subject
 
-1. Add it to `docs/.vitepress/subjects.js`, with a `sidebar`. Subjects without one show as "Not added yet".
+1. Add it to `docs/.vitepress/subjects.js`, with a `sidebar`. The sidebar is one list for the whole site: each subject is a collapsible group in it, the one you are in opens by itself, and subjects without a `sidebar` show "Not added yet". Copy the OOP entry as the template.
 2. Create `docs/<id>/index.md`.
 3. If it has papers, create `docs/.vitepress/theme/data/<id>.js` shaped like `oop.js`, and register it in `data/index.js`.
 4. For maths, turn on formula rendering: set `markdown: { math: true }` in `config.mts` and run `npm add -D markdown-it-mathjax3`.

@@ -21,7 +21,7 @@ import SourceTable from './components/SourceTable.vue'
 import Hub from './components/Hub.vue'
 import FillIn from './components/FillIn.vue'
 import Drill from './components/Drill.vue'
-import { loadPrefs, applyToPage, solutionsHidden, trapsOnly } from './lib/study.js'
+import { loadPrefs, applyToPage, openActiveSidebarGroups, solutionsHidden, trapsOnly } from './lib/study.js'
 
 export default {
   extends: DefaultTheme,
@@ -39,11 +39,15 @@ export default {
   // Re-apply "hide solutions" and "traps only" whenever the page changes.
   setup() {
     const route = useRoute()
+    const settle = () => {
+      applyToPage()
+      setTimeout(openActiveSidebarGroups, 0)   // after the sidebar has rendered
+    }
     onMounted(() => {
       loadPrefs()
-      applyToPage()
+      settle()
     })
-    watch(() => route.path, () => nextTick(applyToPage))
+    watch(() => route.path, () => nextTick(settle))
     watch([solutionsHidden, trapsOnly], () => nextTick(applyToPage))
   },
 }

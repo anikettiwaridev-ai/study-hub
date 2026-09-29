@@ -1,5 +1,6 @@
 // Every subject in the hub. Add a new one here and create docs/<id>/index.md.
-// `sidebar` is what shows on the left inside that subject.
+// `sidebar` is that subject's part of the ONE sidebar shown on every page: it becomes a
+// collapsible group named after the subject. Leave it out until the subject has pages.
 
 export const subjects = [
   {
