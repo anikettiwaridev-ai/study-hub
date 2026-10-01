@@ -228,7 +228,7 @@ The order is the whole question (syllabus: "the importance of forward declaratio
 :::
 
 1. `class Complex;` **forward declaration**: tells the compiler the name exists.
-2. `class A` with `calculate` only **declared**. Complex is still **incomplete**: its size and members are unknown, so no code can touch `c1.real` yet, and it can only be passed by reference or pointer.
+2. `class A` with `calculate` only **declared**. Complex is still **incomplete**: its size and members are unknown, so no code can touch `c1.real` yet, so no code that uses its members can be written yet. A function body that takes it by value cannot be defined here either; references and pointers are fine, which is why the examples use `const Complex &`.
 3. `class Complex` naming `A::calculate` as a friend.
 4. `A::calculate` **defined after** `Complex` is complete.
 
