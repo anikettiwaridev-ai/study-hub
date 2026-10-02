@@ -1,8 +1,6 @@
 #include <iostream>
 using namespace std;
 
-class Celsius;   // forward declaration
-
 class Fahrenheit {
     double f;
 public:

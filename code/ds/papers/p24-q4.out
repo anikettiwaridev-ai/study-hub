@@ -1,0 +1,4 @@
+n = 4: stack reverse 20 ops, queue reverse 20 ops, front of queue now 4, top of stack now 1
+n = 8: stack reverse 72 ops, queue reverse 72 ops, front of queue now 8, top of stack now 1
+n = 16: stack reverse 272 ops, queue reverse 272 ops, front of queue now 16, top of stack now 1
+n = 32: stack reverse 1056 ops, queue reverse 1056 ops, front of queue now 32, top of stack now 1

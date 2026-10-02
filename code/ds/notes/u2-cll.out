@@ -1,0 +1,10 @@
+List empty
+1 2 3 4 5 6 7 
+head = 1, tail = 7
+removes 3
+removes 6
+removes 2
+removes 7
+removes 5
+removes 1
+survivor: 4

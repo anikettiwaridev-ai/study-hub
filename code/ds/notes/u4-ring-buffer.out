@@ -1,0 +1,6 @@
+add 5: 5 | size 1, average 5
+add 9: 5 9 | size 2, average 7
+add 2: 5 9 2 | size 3, average 5.33333
+add 8: 5 9 2 8 | size 4, average 6
+add 6: 9 2 8 6 | size 4, average 6.25
+add 3: 2 8 6 3 | size 4, average 4.75

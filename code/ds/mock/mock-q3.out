@@ -1,0 +1,13 @@
+Enqueue(5): rear = 1
+Enqueue(15): rear = 2
+Enqueue(25): rear = 3
+Dequeue(): removes 5, front = 1
+Dequeue(): removes 15, front = 2
+Enqueue(35): rear = 4
+Enqueue(45): rear = 5
+Enqueue(55): rear = 0
+Enqueue(65): rear = 1
+Enqueue(75): overflow
+Dequeue(): removes 25, front = 3
+Enqueue(85): rear = 2
+front = 3, rear = 2, queue: 35 45 55 65 85

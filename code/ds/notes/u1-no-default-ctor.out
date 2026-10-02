@@ -1,0 +1,2 @@
+Compile error on line 8:
+no matching function for call to 'Box::Box()'

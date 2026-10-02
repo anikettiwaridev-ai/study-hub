@@ -41,15 +41,21 @@ docs/
     mock-mst.md            a mock mid-semester paper
     quiz-practice.md       a mock quiz and rapid-recall blanks
     papers/  assignments/  notes/
+  ds/                      Data Structures: the same layout, plus
+    quiz-clock.md          the 10-minute quiz routine and timed drills
+    quizzes/  practice/    every quiz (answerable on the page) and practice sheet
   .vitepress/
     config.mts             site settings, offline support
     subjects.js            the list of subjects and their sidebars
     theme/
       data/oop.js          every paper, assignment and repeat cluster for OOP
+      data/ds.js           the same for Data Structures (papers, quizzes, practice sheets)
       components/          question rows, MCQs, the repeat map and so on
 code/
   oop/                     every C++ program, as real files
     papers/ assignments/ notes/ mock/ quiz/
+  ds/
+    papers/ notes/ quiz/ practice/ mock/
 scripts/
   verify.mjs               compiles and runs every program, saves its output
   check-data.mjs           checks the repeat data is consistent

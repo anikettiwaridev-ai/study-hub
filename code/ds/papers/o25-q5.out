@@ -1,0 +1,3 @@
+[p5 k2 v200] [p4 k5 v500] [p3 k1 v100] [p3 k4 v400] [p1 k3 v300]  tail = k3
+dequeued key 2 (priority 5)
+[p4 k5 v500] [p3 k1 v100] [p3 k4 v400] [p1 k3 v300]  tail = k3

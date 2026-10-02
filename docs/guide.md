@@ -14,6 +14,8 @@ title: Using this site
 
 **Two kinds of practice.** Mid-semester papers are answered in writing, so their solutions are full explanations and programs. Quiz-style questions (the Quiz 1 page, *Quiz practice*, and the **Quick check** at the end of every notes unit) are answered on the page: tap an option, or type into a blank and press **Check**. Blanks accept common spellings; **Show answer** gives up gracefully.
 
+**Quiz pages have a timer.** The Data Structures quizzes carry a 10-minute countdown that stays in view as you scroll. Long questions have a collapsed **Skeleton** box under them: open it after you have tried, to see the one-line pattern the question reduces to.
+
 **Repeat labels** sit above a question when it has appeared elsewhere:
 
 - **⟳ Exact**: the same question word for word.

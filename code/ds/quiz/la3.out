@@ -1,0 +1,4 @@
+cycle from 0: 1
+cycle in a path: 0
+find(2) = 0, size 3
+1 4 3 9 8 7 

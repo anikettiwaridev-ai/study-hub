@@ -1,0 +1,17 @@
+20 candies, 4 children
+  child 1 takes 5, machine has 15
+  child 2 takes 3, machine has 12
+  child 3 takes 5, machine has 7
+  child 4 takes 4, machine has 3
+  child 1 takes 2, machine has 1
+  child 3 takes 1, machine has 0
+Candies ran out. Remaining requests: child 3 (6)
+40 candies, 4 children
+  child 1 takes 5, machine has 35
+  child 2 takes 3, machine has 32
+  child 3 takes 5, machine has 27
+  child 4 takes 4, machine has 23
+  child 1 takes 2, machine has 21
+  child 3 takes 5, machine has 16
+  child 3 takes 2, machine has 14
+All requests fulfilled. Candies left: 14

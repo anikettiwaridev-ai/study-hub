@@ -1,0 +1,5 @@
+peek 3
+popped 3
+popped 2
+popped 1
+caught: stack underflow: the stack is empty

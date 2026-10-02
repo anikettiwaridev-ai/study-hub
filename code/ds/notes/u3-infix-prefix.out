@@ -1,0 +1,4 @@
+(a-b/c)*(a/k-l)  ->  *-a/bc-/akl
+a-b-c  ->  --abc
+a^b^c  ->  ^a^bc
+((H*((((A+((B+C)*D))*F)*G)*E))+J)  ->  +*H***+A*+BCDFGEJ

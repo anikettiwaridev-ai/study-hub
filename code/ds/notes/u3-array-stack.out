@@ -1,0 +1,8 @@
+Overflow: 60 not pushed
+10 20 30 40 50 (top = 4)
+popped 50
+popped 40
+popped 30
+peek 20
+10 20 (top = 1)
+Underflow

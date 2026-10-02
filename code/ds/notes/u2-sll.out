@@ -1,0 +1,8 @@
+List empty
+10 20 30 40 
+Invalid position 9
+10 20 25 30 40 50 
+delete 77: not found
+20 25 40 
+search 40: found
+List empty

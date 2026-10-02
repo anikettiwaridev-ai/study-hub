@@ -1,0 +1,14 @@
+Gantt chart:
+  0-2 P1
+  2-4 P2
+  4-5 P3
+  5-7 P1
+  7-9 P4
+  9-10 P2
+  10-11 P1
+  11-13 P4
+P1: completion 11, turnaround 11, waiting 6
+P2: completion 10, turnaround 9, waiting 6
+P3: completion 5, turnaround 3, waiting 2
+P4: completion 13, turnaround 10, waiting 6
+average turnaround 8.25, average waiting 5

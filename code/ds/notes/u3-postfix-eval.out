@@ -1,0 +1,10 @@
+53+82-*
+  after +: top = 8, size = 1
+  after -: top = 6, size = 2
+  after *: top = 48, size = 1
+result = 48
+231*+9-
+  after *: top = 3, size = 2
+  after +: top = 5, size = 1
+  after -: top = -4, size = 1
+result = -4

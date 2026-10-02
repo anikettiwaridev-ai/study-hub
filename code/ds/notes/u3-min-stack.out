@@ -1,0 +1,3 @@
+min 3
+after pop: min 3
+after two more pops: min 5

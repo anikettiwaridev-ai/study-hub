@@ -21,6 +21,7 @@ import SourceTable from './components/SourceTable.vue'
 import Hub from './components/Hub.vue'
 import FillIn from './components/FillIn.vue'
 import Drill from './components/Drill.vue'
+import QuizTimer from './components/QuizTimer.vue'
 import { loadPrefs, applyToPage, openActiveSidebarGroups, solutionsHidden, trapsOnly } from './lib/study.js'
 
 export default {
@@ -32,7 +33,7 @@ export default {
     }),
 
   enhanceApp({ app }) {
-    const components = { Q, Mcq, Src, RepeatMap, Progress, PaperHeader, SourceTable, Hub, FillIn, Drill }
+    const components = { Q, Mcq, Src, RepeatMap, Progress, PaperHeader, SourceTable, Hub, FillIn, Drill, QuizTimer }
     for (const [name, c] of Object.entries(components)) app.component(name, c)
   },
 

@@ -1,0 +1,6 @@
+InvalidBalance caught
+balance 70
+InsufficientFunds caught
+account 0: 150
+account 1: 300
+account 2: 50

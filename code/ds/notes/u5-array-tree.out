@@ -1,0 +1,11 @@
+A at 0: parent none, left B, right C
+B at 1: parent A, left D, right E
+C at 2: parent A, left F, right G
+D at 3: parent B, left -, right -
+E at 4: parent B, left H, right I
+F at 5: parent C, left -, right J
+G at 6: parent C, left -, right -
+H at 9: parent E, left -, right -
+I at 10: parent E, left -, right -
+J at 12: parent F, left -, right -
+Preorder from the array: A B D E H I C F J G 

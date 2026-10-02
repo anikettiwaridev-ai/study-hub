@@ -1,0 +1,6 @@
+"{[a+(b*c)]-1}" -> balanced
+"{[a+(b*c)]-1)}" -> not balanced
+"a+b)" -> not balanced
+"((a)" -> not balanced
+"([)]" -> not balanced
+"" -> balanced

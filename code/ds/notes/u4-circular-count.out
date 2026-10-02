@@ -1,0 +1,4 @@
+front = 0, rear = 4: 10 20 30 40 50 
+front = 2, rear = 4: 30 40 50 
+front = 2, rear = 1: 30 40 50 60 70 
+overflow: 80

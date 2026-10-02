@@ -1,0 +1,4 @@
+Dec 2024 Q3d preorder: 1 2 4 6 8 9 7 5 3 
+Dec 2024 Q3d BFS:      1 2 3 4 5 6 7 8 9 
+Mock Q5 postorder:     7 8 4 5 2 9 6 3 1 
+Mock Q5 BFS:           1 2 3 4 5 6 7 8 9 

@@ -1,0 +1,7 @@
+BFS:       A B C D E F G H I 
+Preorder:  A B D E H I C F G 
+Inorder:   D B H E I A F C G 
+Postorder: D H I E B F G C A 
+nodes 9, leaves 5, height 3
+search H: 1, search Z: 0
+Mirrored inorder: G C F A I E H B D 

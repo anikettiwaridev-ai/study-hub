@@ -1,0 +1,2 @@
+Compile error on line 11:
+'int Point::x' is private within this context

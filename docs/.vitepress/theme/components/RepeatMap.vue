@@ -39,6 +39,13 @@ const accounted = computed(() => rows.value.reduce((n, r) => n + r.marks, 0) + s
 const maxMarks = computed(() => Math.max(1, ...rows.value.map((r) => r.marks)))
 
 const kindLabel = { exact: '⟳ Exact', reworded: '≈ Reworded' }
+// Subjects can rename the "assignments" column (DS has practice sheets instead).
+const labels = computed(() => ({
+  column: ['In assignments', 'In A1–A5'],
+  word: 'assignments',
+  uncovered: 'No assignment covers this. Study it from the notes.',
+  ...(data.value.labels ?? {}),
+}))
 const chip = (r) => ({
   ref: r,
   label: refLabel(r, sources.value),
@@ -66,7 +73,7 @@ const chip = (r) => ({
             <th scope="col">Topic</th>
             <th scope="col" class="num"><span class="rm-long">Mid-sem marks</span><span class="rm-short">Marks</span></th>
             <th scope="col" class="num"><span class="rm-long">Times asked</span><span class="rm-short">Asked</span></th>
-            <th scope="col" class="num"><span class="rm-long">In assignments</span><span class="rm-short">In A1–A5</span></th>
+            <th scope="col" class="num"><span class="rm-long">{{ labels.column[0] }}</span><span class="rm-short">{{ labels.column[1] }}</span></th>
           </tr>
         </thead>
         <tbody>
@@ -100,12 +107,10 @@ const chip = (r) => ({
         <a class="header-anchor" :href="`#${row.c.id}`" :aria-label="`Link to ${row.c.title}`">&#8203;</a>
       </h3>
       <p class="rm-meta">
-        Asked {{ row.total }} times: {{ row.papers }} in papers, {{ row.assignments }} in assignments.
+        Asked {{ row.total }} times: {{ row.papers }} in papers and quizzes, {{ row.assignments }} in {{ labels.word }}.
         <template v-if="row.marks">{{ row.marks }} mid-semester marks.</template>
       </p>
-      <p v-if="row.c.uncovered" class="rm-uncovered">
-        No assignment covers this. Study it from the notes.
-      </p>
+      <p v-if="row.c.uncovered" class="rm-uncovered">{{ labels.uncovered }}</p>
       <p v-if="row.c.trap" class="rm-trap" v-html="inline(row.c.trap)"></p>
 
       <ul class="rm-groups">

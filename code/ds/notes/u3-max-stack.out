@@ -1,0 +1,10 @@
+push 3 -> max 3
+push 7 -> max 7
+push 2 -> max 7
+push 9 -> max 9
+push 4 -> max 9
+pop 4 -> max 9
+pop 9 -> max 7
+pop 2 -> max 7
+pop 7 -> max 3
+pop 3 -> max -1

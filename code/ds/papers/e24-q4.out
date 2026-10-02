@@ -1,0 +1,6 @@
+All tasks in priority order: 1 1 3 5 7 8 
+Processed the task with priority 1
+Processed the task with priority 1
+Processed the task with priority 3
+Capacity 3 exceeded: not all tasks can be processed.
+Remaining tasks: 5 7 8 

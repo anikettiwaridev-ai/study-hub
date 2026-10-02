@@ -1,0 +1,12 @@
+Enqueue(50): overflow
+  front = 0, rear = 4, queue: 10 20 30 40
+removed 10
+  front = 1, rear = 0, queue: 20 30 40 60
+removed 20
+removed 30
+removed 40
+removed 60
+Dequeue(): underflow
+  front = 0, rear = 0, queue:
+removed 70
+  front = 1, rear = 2, queue: 80

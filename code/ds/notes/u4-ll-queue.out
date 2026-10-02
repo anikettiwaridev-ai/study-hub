@@ -1,0 +1,7 @@
+queue: 4 
+dequeue 4
+queue: (empty, rear = NULL)
+dequeue -1
+queue: 9 5 
+dequeue 9
+queue: 5 
