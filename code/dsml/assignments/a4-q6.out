@@ -1,0 +1,23 @@
+One-hot via pd.get_dummies:
+    City_Delhi  City_Mumbai  City_Pune
+0        True        False      False
+1       False         True      False
+2        True        False      False
+3       False        False       True
+4        True        False      False
+5       False         True      False
+6        True        False      False
+8       False        False       True
+9        True        False      False
+
+One-hot via OneHotEncoder:
+    City_Delhi  City_Mumbai  City_Pune
+0         1.0          0.0        0.0
+1         0.0          1.0        0.0
+2         1.0          0.0        0.0
+3         0.0          0.0        1.0
+4         1.0          0.0        0.0
+5         0.0          1.0        0.0
+6         1.0          0.0        0.0
+8         0.0          0.0        1.0
+9         1.0          0.0        0.0

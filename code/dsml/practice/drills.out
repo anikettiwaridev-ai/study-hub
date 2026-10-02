@@ -1,0 +1,211 @@
+<!-- #region d1 -->
+
+| x | Min-max | Z-score (population σ) |
+|:-:|--:|--:|
+| 5 | 0 | −1.069 |
+| 10 | 0.2 | −0.5345 |
+| 15 | 0.4 | 0 |
+| 30 | 1 | 1.6036 |
+
+min = 5, max = 30, μ = 15, σ = √(Σ(x − μ)²/4) = 9.3541. Check: the z-scores add to 0.
+
+<!-- #endregion d1 -->
+<!-- #region d2 -->
+
+| x | x′ = 2(x − min)/(max − min) − 1 |
+|:-:|--:|
+| −10 | −1 |
+| 0 | −0.5 |
+| 10 | 0 |
+| 20 | 0.5 |
+| 30 | 1 |
+
+Min-max to a range [a, b] is a + (x − min)(b − a)/(max − min); for [−1, 1] that is the formula above.
+
+<!-- #endregion d2 -->
+<!-- #region d3 -->
+
+| x | z |
+|:-:|--:|
+| 12 | −0.498 |
+| 14 | −0.368 |
+| 15 | −0.302 |
+| 13 | −0.433 |
+| 16 | −0.237 |
+| 14 | −0.368 |
+| 13 | −0.433 |
+| 60 | 2.638 |
+
+μ = 19.625, σ = 15.305. With |z| > 2: **60** is an outlier (z = 2.638). With the stricter |z| > 3, nothing is flagged: one big value inflates σ enough to hide itself.
+
+<!-- #endregion d3 -->
+<!-- #region d4 -->
+
+| x | y | x − x̄ | y − ȳ | product | (x − x̄)² | (y − ȳ)² |
+|:-:|:-:|--:|--:|--:|--:|--:|
+| 10 | 40 | −20 | 11 | −220 | 400 | 121 |
+| 20 | 35 | −10 | 6 | −60 | 100 | 36 |
+| 30 | 30 | 0 | 1 | 0 | 0 | 1 |
+| 40 | 22 | 10 | −7 | −70 | 100 | 49 |
+| 50 | 18 | 20 | −11 | −220 | 400 | 121 |
+|  |  |  | **Σ** | **−570** | **1000** | **328** |
+
+x̄ = 30, ȳ = 29. r = −570/√(1000 × 328) = **−0.9953**: a very strong **negative** linear relationship.
+
+<!-- #endregion d4 -->
+<!-- #region d5 -->
+
+Σx = 590, Σy = 6680, Σx² = 71900, Σxy = 815400, n = 5.
+
+$$ \begin{aligned} a &= \frac{5(815400) - (590)(6680)}{5(71900) - (590)^2} = \frac{135800}{11400} = 11.9123 \\ b &= \bar y - a\bar x = 1336 - 11.9123 \times 118 = -69.65 \end{aligned} $$
+
+**ŷ = 11.9123x − 69.65.** For an advertisement spend of 200 the predicted sales are 11.9123 × 200 − 69.65 = **2312.81**. R² = 1 − 26382.5/349920 = 0.925. (200 is outside the data, 90–150, so this is an extrapolation.)
+
+<!-- #endregion d5 -->
+<!-- #region d6 -->
+
+f(w) = w² − 4w + 5, so f′(w) = 2w − 4; the minimum is at w = 2.
+
+| Iteration | w (old) | f′(w) | new w |
+|:-:|--:|--:|---|
+| 1 | 0 | −4 | 0 − 0.25 × (−4) = **1** |
+| 2 | 1 | −2 | 1 − 0.25 × (−2) = **1.5** |
+| 3 | 1.5 | −1 | 1.5 − 0.25 × (−1) = **1.75** |
+
+Each step halves the gap to 2 (2 → 1 → 0.5 → 0.25 away).
+
+<!-- #endregion d6 -->
+<!-- #region d7 -->
+
+| x | y | ŷ | e = ŷ − y | e·x |
+|:-:|:-:|--:|--:|--:|
+| 2 | 5 | 0 | −5 | −10 |
+| 4 | 9 | 0 | −9 | −36 |
+| 6 | 13 | 0 | −13 | −78 |
+|  |  | **Σ** | **−27** | **−124** |
+
+$$ \begin{aligned} \frac{\partial J}{\partial w} &= \tfrac{1}{n}\textstyle\sum e\,x = \tfrac{1}{3}(-124) = -41.3333, & w &= 0 - 0.01(-41.3333) = \mathbf{0.4133} \\ \frac{\partial J}{\partial b} &= \tfrac{1}{n}\textstyle\sum e = \tfrac{1}{3}(-27) = -9, & b &= 0 - 0.01(-9) = \mathbf{0.09} \end{aligned} $$
+
+With J = (1/2n)Σ(ŷ − y)² the 2 cancels, so the gradient has 1/n in front. With the 2/n convention every gradient, and so every step, doubles.
+
+<!-- #endregion d7 -->
+<!-- #region d8 -->
+
+| x₁ | x₂ | y | ŷ | e | e·x₁ | e·x₂ |
+|:-:|:-:|:-:|--:|--:|--:|--:|
+| 1 | 1 | 4 | 0 | −4 | −4 | −4 |
+| 2 | 0 | 5 | 0 | −5 | −10 | 0 |
+| 0 | 2 | 6 | 0 | −6 | 0 | −12 |
+|  |  |  | **Σ** | **−15** | **−14** | **−16** |
+
+Gradients (2/n convention): ∂J/∂θ₀ = (2/3)(−15) = −10, ∂J/∂θ₁ = (2/3)(−14) = −9.3333, ∂J/∂θ₂ = (2/3)(−16) = −10.6667.
+
+**After one iteration: θ₀ = 1, θ₁ = 0.9333, θ₂ = 1.0667.**
+
+<!-- #endregion d8 -->
+<!-- #region d9 -->
+
+z = −4 + 0.05 × 60 = −1; p = 1/(1 + e^1) = 1/(1 + 2.7183) = **0.2689** → predicted class **0** (fail) at threshold 0.5.
+
+Odds = p/(1 − p) = 0.3679 (= e^z = e^−1). Odds ratio per extra hour = e^0.05 = **1.0513**: each hour multiplies the odds of passing by about 1.05 (+5.13%). p = 0.5 exactly when z = 0, that is −4 + 0.05x = 0, so **x = 80 hours**.
+
+<!-- #endregion d9 -->
+<!-- #region d10 -->
+
+|  | Flagged spam | Let through | Total |
+|---|:-:|:-:|:-:|
+| **Actually spam** | TP = 150 | FN = 50 | 200 |
+| **Actually genuine** | FP = 30 | TN = 770 | 800 |
+
+| Metric | Value |
+|---|--:|
+| Accuracy | 920/1000 = **0.92** |
+| Precision | 150/180 = **0.8333** |
+| Recall | 150/200 = **0.75** |
+| F1 | 300/380 = **0.7895** |
+| Specificity | 770/800 = **0.9625** |
+
+For a spam filter, precision matters most: 30 genuine emails went to spam, and each one is a message someone may never read.
+
+<!-- #endregion d10 -->
+<!-- #region d11 -->
+
+| t | TP | FP | TPR | FPR |
+|:-:|:-:|:-:|:-:|:-:|
+| 0.9 | 1 | 0 | 0.333 | 0 |
+| 0.75 | 2 | 0 | 0.667 | 0 |
+| 0.7 | 2 | 1 | 0.667 | 0.333 |
+| 0.5 | 3 | 1 | 1 | 0.333 |
+| 0.4 | 3 | 2 | 1 | 0.667 |
+| 0.2 | 3 | 3 | 1 | 1 |
+
+Points: (0, 0), (0, 0.333), (0, 0.667), (0.333, 0.667), (0.333, 1), (0.667, 1), (1, 1). **AUC = 0.8889** (check: 8 of 9 positive–negative pairs correctly ordered = 0.8889).
+
+<!-- #endregion d11 -->
+<!-- #region d12 -->
+
+| Set-up | N1 (models) | N2 (train size) | N3 (test size) |
+|---|:-:|:-:|:-:|
+| 4-fold on 60 examples | 4 | 45 | 15 |
+| LOOCV on 25 examples | 25 | 24 | 1 |
+| 10-fold on 250 examples | 10 | 225 | 25 |
+
+<!-- #endregion d12 -->
+<!-- #region d13 -->
+
+| Point | Coordinates | Class | Euclidean to (3, 2) | Manhattan |
+|:-:|:-:|:-:|--:|:-:|
+| A | (1, 1) | Red | 2.236 | 3 |
+| B | (2, 1) | Red | 1.414 | 2 |
+| C | (4, 3) | Blue | 1.414 | 2 |
+| D | (5, 4) | Blue | 2.828 | 4 |
+| E | (3, 5) | Blue | 3 | 3 |
+| F | (1, 3) | Red | 2.236 | 3 |
+
+Sorted (Euclidean): B 1.414, C 1.414, A 2.236, F 2.236, D 2.828, E 3. The 3rd place is a tie between A and F at 2.236, but both are Red, so the vote is unaffected: k = 3 → B (Red), C (Blue), A or F (Red) → **Red**. k = 5 → Red, Blue, Red, Red, Blue → **Red** (3 to 2).
+
+<!-- #endregion d13 -->
+<!-- #region d14 -->
+
+The 3 nearest houses (distance, price in lakh): (2, 52), (3, 48), (4, 60). Plain KNN regression: the **average**, (52 + 48 + 60)/3 = **53.33**. Distance-weighted (w = 1/d²: 0.25, 0.1111, 0.0625): Σw·price/Σw = **52.13**, pulled towards the nearest house.
+
+<!-- #endregion d14 -->
+<!-- #region d15 -->
+
+Parent: 3 Yes, 3 No, so H = **1** (a 50/50 split).
+
+| Attribute | Branches | Weighted H | Gain |
+|---|---|--:|--:|
+| Weather | Rainy 1Y/2N (H = 0.9183); Sunny 2Y/1N (H = 0.9183) | 0.9183 | **0.0817** |
+| Wind | High 0Y/2N (H = 0); Low 3Y/1N (H = 0.8113) | 0.5409 | **0.4591** |
+
+**Wind** has the higher gain, so it is the root: its High branch is pure (both No).
+
+<!-- #endregion d15 -->
+<!-- #region d16 -->
+
+| Class | P(c) | P(free = Yes ∣ c) | P(link = Yes ∣ c) | Score | With Laplace smoothing |
+|---|:-:|:-:|:-:|--:|---|
+| Spam | 4/8 | 3/4 | 3/4 | 0.2812 | (3+1)/(4+2) × (3+1)/(4+2) × 4/8 = 0.2222 |
+| Ham | 4/8 | 1/4 | 0/4 | 0 | (1+1)/(4+2) × (0+1)/(4+2) × 4/8 = 0.0278 |
+
+Without smoothing, Ham scores exactly 0 because no Ham email had a link (P(link ∣ Ham) = 0/4), whatever the other feature says. Either way **Spam** wins; normalised with smoothing, P(Spam ∣ free, link) = 0.8889.
+
+<!-- #endregion d16 -->
+<!-- #region d17 -->
+
+| Point | w·x + b | Value | Class |  |
+|:-:|:-:|:-:|---|---|
+| (1, 0) | 2(1) − (0) − 1 | 1 | +1 | support vector (on a margin plane) |
+| (0, 1) | 2(0) − (1) − 1 | −2 | −1 |  |
+| (2, 1) | 2(2) − (1) − 1 | 2 | +1 |  |
+| (1, 1) | 2(1) − (1) − 1 | 0 | on the boundary |  |
+
+‖w‖ = √(2² + (−1)²) = √5, so the margin = 2/√5 = **0.8944**.
+
+<!-- #endregion d17 -->
+<!-- #region d18 -->
+
+Q̂(s, a) ← r + γ max Q̂(s′, a′) = 10 + 0.8 × max(20, 35, 5) = 10 + 0.8 × 35 = **38**.
+
+<!-- #endregion d18 -->

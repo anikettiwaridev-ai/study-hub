@@ -1,0 +1,12 @@
+Original dataset:
+      Name   Age   Salary    City Department  Experience
+0    Amit  25.0  50000.0   Delhi         IT           2
+1  Bhavna  32.0  62000.0  Mumbai         HR           8
+2  Chirag   NaN  58000.0   Delhi         IT           5
+3   Divya  28.0      NaN    Pune      Sales           3
+4   Eshan  41.0  91000.0     NaN         IT          15
+5   Farah  36.0  75000.0  Mumbai         HR          10
+6  Gaurav   NaN  67000.0   Delhi      Sales           6
+7   Divya  28.0      NaN    Pune      Sales           3
+8    Isha  23.0  48000.0    Pune         IT           1
+9   Jatin  45.0  99000.0     NaN         HR          20

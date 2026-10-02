@@ -1,0 +1,80 @@
+<!-- #region q1 -->
+
+**Iteration 1.** Start: θ₀ = 0, θ₁ = 0, θ₂ = 0.
+
+| i | X₁ | X₂ | Y | Ŷ = θ₀ + θ₁X₁ + θ₂X₂ | error e = Ŷ − Y | e·X₁ | e·X₂ |
+|:-:|:-:|:-:|:-:|--:|--:|--:|--:|
+| 1 | 1 | 2 | 40000 | 0 | −40000 | −40000 | −80000 |
+| 2 | 2 | 3 | 45000 | 0 | −45000 | −90000 | −135000 |
+| 3 | 3 | 4 | 50000 | 0 | −50000 | −150000 | −200000 |
+| 4 | 4 | 5 | 60000 | 0 | −60000 | −240000 | −300000 |
+| 5 | 5 | 6 | 70000 | 0 | −70000 | −350000 | −420000 |
+| **Σ** |  |  |  |  | **−265000** | **−870000** | **−1135000** |
+
+$$ \begin{aligned} \frac{\partial J}{\partial \theta_0} &= \tfrac{2}{5}\textstyle\sum e = 0.4(-265000) = -106000 &\theta_0 &= 0 - 0.01(-106000) = \mathbf{1060} \\ \frac{\partial J}{\partial \theta_1} &= \tfrac{2}{5}\textstyle\sum eX_1 = 0.4(-870000) = -348000 &\theta_1 &= 0 - 0.01(-348000) = \mathbf{3480} \\ \frac{\partial J}{\partial \theta_2} &= \tfrac{2}{5}\textstyle\sum eX_2 = 0.4(-1135000) = -454000 &\theta_2 &= 0 - 0.01(-454000) = \mathbf{4540} \end{aligned} $$
+
+**Iteration 2.** Start: θ₀ = 1060, θ₁ = 3480, θ₂ = 4540.
+
+| i | X₁ | X₂ | Y | Ŷ = θ₀ + θ₁X₁ + θ₂X₂ | error e = Ŷ − Y | e·X₁ | e·X₂ |
+|:-:|:-:|:-:|:-:|--:|--:|--:|--:|
+| 1 | 1 | 2 | 40000 | 13620 | −26380 | −26380 | −52760 |
+| 2 | 2 | 3 | 45000 | 21640 | −23360 | −46720 | −70080 |
+| 3 | 3 | 4 | 50000 | 29660 | −20340 | −61020 | −81360 |
+| 4 | 4 | 5 | 60000 | 37680 | −22320 | −89280 | −111600 |
+| 5 | 5 | 6 | 70000 | 45700 | −24300 | −121500 | −145800 |
+| **Σ** |  |  |  |  | **−116700** | **−344900** | **−461600** |
+
+$$ \begin{aligned} \frac{\partial J}{\partial \theta_0} &= \tfrac{2}{5}\textstyle\sum e = 0.4(-116700) = -46680 &\theta_0 &= 1060 - 0.01(-46680) = \mathbf{1526.8} \\ \frac{\partial J}{\partial \theta_1} &= \tfrac{2}{5}\textstyle\sum eX_1 = 0.4(-344900) = -137960 &\theta_1 &= 3480 - 0.01(-137960) = \mathbf{4859.6} \\ \frac{\partial J}{\partial \theta_2} &= \tfrac{2}{5}\textstyle\sum eX_2 = 0.4(-461600) = -184640 &\theta_2 &= 4540 - 0.01(-184640) = \mathbf{6386.4} \end{aligned} $$
+
+**Cost after each iteration** (MSE): 2.925 × 10⁹ → 5.488 × 10⁸ → 1.604 × 10⁸. It falls every time, so the steps are going the right way.
+
+**If you use $J = \frac{1}{2n}\sum(\hat Y - Y)^2$ instead**, every gradient is halved, so after iteration 1: θ₀ = 530, θ₁ = 1740, θ₂ = 2270. Either is accepted if you state which one you use.
+
+<!-- #endregion q1 -->
+<!-- #region q2 -->
+
+$$ \begin{aligned} z &= b_0 + b_1\cdot\text{Age} + b_2\cdot\text{Income} = -5 + 0.1(38) + 0.00005(62000) \\   &= -5 + 3.8 + 3.1 = 1.9 \\ P(\text{subscribed}) &= \sigma(z) = \frac{1}{1 + e^{-1.9}} = \frac{1}{1 + 0.1496} = \mathbf{0.8699} \end{aligned} $$
+
+So the probability is **0.87 (87%)**, and with the usual threshold of 0.5 the model predicts **subscribed (1)**. The odds are p/(1 − p) = 6.69, which is $e^{z} = e^{1.9}$: about 6.7 to 1 in favour.
+
+<!-- #endregion q2 -->
+<!-- #region q3 -->
+
+Read the four cells first: **TP = 50** (actual 1, predicted 1), **FN = 10** (actual 1, predicted 0), **FP = 5** (actual 0, predicted 1), **TN = 35** (actual 0, predicted 0). Total = 100.
+
+| Metric | Formula | Substitution | Value |
+|---|---|---|--:|
+| a. Accuracy | (TP + TN) / total | (50 + 35) / 100 | **0.85** |
+| b. Precision | TP / (TP + FP) | 50 / (50 + 5) = 50/55 | **0.9091** |
+| c. Recall | TP / (TP + FN) | 50 / (50 + 10) = 50/60 | **0.8333** |
+| d. F1 score | 2PR / (P + R) | 2 × 0.9091 × 0.8333 / (0.9091 + 0.8333) | **0.8696** |
+
+Shortcut for F1 straight from the counts: F1 = 2TP / (2TP + FP + FN) = 100 / 115 = 0.8696. Specificity, if asked: TN / (TN + FP) = 35/40 = 0.875.
+
+<!-- #endregion q3 -->
+<!-- #region q4b -->
+
+| Quantity | Meaning | Formula | Value |
+|---|---|---|---|
+| N1 | how many times a model is built and its error computed | k | **10** |
+| N2 | training-set size each time | (k − 1)/k × n = 9/10 × 100 | **90** |
+| N3 | test-set size each time | n / k = 100 / 10 | **10** |
+
+Check: N2 + N3 = 90 + 10 = 100 = n, and over the 10 rounds every example is tested exactly once.
+
+<!-- #endregion q4b -->
+<!-- #region q5c -->
+
+Each eigenvalue is the variance along one principal component. Total variance = 5.2 + 3.8 + 1.5 + 0.6 + 0.2 = 11.3.
+
+| Component | Eigenvalue | Share of variance | Cumulative |
+|:-:|--:|--:|--:|
+| PC1 | 5.2 | 46% | 46% |
+| PC2 | 3.8 | 33.6% | 79.6% |
+| PC3 | 1.5 | 13.3% | 92.9% |
+| PC4 | 0.6 | 5.3% | 98.2% |
+| PC5 | 0.2 | 1.8% | 100% |
+
+The cumulative share first reaches 90% at PC3 (92.9%), so **retain 3 principal components**.
+
+<!-- #endregion q5c -->

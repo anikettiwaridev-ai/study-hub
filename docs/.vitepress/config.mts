@@ -32,6 +32,9 @@ export default withPwa(
         detailsLabel: 'Solution',
       },
       lineNumbers: false,
+      // $…$ and $$…$$ are typeset at build time (MathJax to SVG), so formulas work offline.
+      // fontCache 'local' shares glyph shapes within each formula, which cuts page size by about a quarter.
+      math: { svg: { fontCache: 'local' } },
     },
 
     themeConfig: {

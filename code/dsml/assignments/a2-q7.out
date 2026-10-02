@@ -1,0 +1,48 @@
+With missing values:
+      Name Dept  Marks   Age
+0    Amit  CSE   85.0  20.0
+1  Bhavna  ECE    NaN  21.0
+2  Chirag  CSE   92.0  20.0
+3   Divya   ME   61.0  22.0
+4   Eshan  ECE   74.0   NaN
+5   Farah  CSE   88.0  20.0
+
+Null check:
+     Name   Dept  Marks    Age
+0  False  False  False  False
+1  False  False   True  False
+2  False  False  False  False
+3  False  False  False  False
+4  False  False  False   True
+5  False  False  False  False
+Null count per column:
+ Name     0
+Dept     0
+Marks    1
+Age      1
+dtype: int64
+
+Filled with 0:
+      Name Dept  Marks   Age
+0    Amit  CSE   85.0  20.0
+1  Bhavna  ECE    0.0  21.0
+2  Chirag  CSE   92.0  20.0
+3   Divya   ME   61.0  22.0
+4   Eshan  ECE   74.0   0.0
+5   Farah  CSE   88.0  20.0
+
+Marks filled with mean:
+      Name Dept  Marks   Age
+0    Amit  CSE   85.0  20.0
+1  Bhavna  ECE   80.0  21.0
+2  Chirag  CSE   92.0  20.0
+3   Divya   ME   61.0  22.0
+4   Eshan  ECE   74.0   NaN
+5   Farah  CSE   88.0  20.0
+
+After dropping null rows:
+      Name Dept  Marks   Age
+0    Amit  CSE   85.0  20.0
+2  Chirag  CSE   92.0  20.0
+3   Divya   ME   61.0  22.0
+5   Farah  CSE   88.0  20.0

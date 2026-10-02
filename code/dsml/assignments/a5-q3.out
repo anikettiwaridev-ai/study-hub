@@ -1,0 +1,9 @@
+X shape: (400, 2) | y shape: (400,)
+X (first 5):
+    Age  EstimatedSalary
+0   19            19000
+1   35            20000
+2   26            43000
+3   27            57000
+4   19            76000
+y (first 5): [0 0 0 0 0]

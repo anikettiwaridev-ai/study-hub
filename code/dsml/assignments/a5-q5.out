@@ -1,0 +1,4 @@
+Before scaling (first row of train): [   24 58000]
+After scaling  (first row of train): [-1.2345 -0.368 ]
+Learned means : [3.716000e+01 7.079375e+04]
+Learned scales: [1.066000e+01 3.476638e+04]

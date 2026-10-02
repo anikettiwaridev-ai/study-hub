@@ -1,0 +1,2 @@
+X shape: (150, 4) | y shape: (150,)
+Feature columns: ['SepalLengthCm', 'SepalWidthCm', 'PetalLengthCm', 'PetalWidthCm']

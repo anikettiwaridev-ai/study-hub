@@ -138,7 +138,69 @@ export const subjects = [
       },
     ],
   },
-  { id: 'dsml', code: 'AIN3003', name: 'Data Science and Machine Learning', faculty: 'Shailendra Singh' },
+  {
+    id: 'dsml',
+    code: 'AIN3003',
+    name: 'Data Science and Machine Learning',
+    faculty: 'Shailendra Singh',
+    status: 'Mid-semester and quizzes',
+    sidebar: [
+      {
+        text: 'Start here',
+        items: [
+          { text: 'What to study, in order', link: '/dsml/' },
+          { text: 'How to answer the mid-sem', link: '/dsml/how-to-answer' },
+          { text: 'Formula sheet', link: '/dsml/formulas' },
+          { text: 'Most-trapped questions', link: '/dsml/traps' },
+          { text: 'How often questions repeat', link: '/dsml/repeats' },
+        ],
+      },
+      {
+        text: 'Notes',
+        collapsed: false,
+        items: [
+          { text: 'Overview', link: '/dsml/notes/' },
+          { text: 'Unit 1 · Data, Python, maths', link: '/dsml/notes/unit-1' },
+          { text: 'Unit 2 · Preprocessing', link: '/dsml/notes/unit-2' },
+          { text: 'Unit 3 · ML fundamentals', link: '/dsml/notes/unit-3' },
+          { text: 'Unit 4A · Regression, gradient descent', link: '/dsml/notes/unit-4a' },
+          { text: 'Unit 4B · KNN, SVM, Bayes, trees', link: '/dsml/notes/unit-4b' },
+        ],
+      },
+      {
+        text: 'Past papers',
+        collapsed: false,
+        items: [
+          { text: 'All papers', link: '/dsml/papers/' },
+          { text: 'Sep 2025 mid-semester', link: '/dsml/papers/mst-2025' },
+          { text: 'Spring 2025 mid-semester', link: '/dsml/papers/mst-2025-spring' },
+          { text: 'Autumn 2024 end-semester', link: '/dsml/papers/endsem-2024' },
+          { text: 'Spring 2025 end-semester', link: '/dsml/papers/endsem-2025' },
+        ],
+      },
+      {
+        text: 'Practice',
+        items: [
+          { text: 'Numerical drills', link: '/dsml/practice' },
+          { text: 'Mock mid-semester paper', link: '/dsml/mock-mst' },
+          { text: 'Timed quiz sets', link: '/dsml/quiz-practice' },
+        ],
+      },
+      {
+        text: 'Assignments',
+        collapsed: true,
+        items: [
+          { text: 'Overview', link: '/dsml/assignments/' },
+          { text: 'A1 · NumPy', link: '/dsml/assignments/a1' },
+          { text: 'A2 · Pandas and Matplotlib', link: '/dsml/assignments/a2' },
+          { text: 'A3 · Linear regression', link: '/dsml/assignments/a3' },
+          { text: 'A4 · Preprocessing', link: '/dsml/assignments/a4' },
+          { text: 'A5 · Logistic regression', link: '/dsml/assignments/a5' },
+          { text: 'A6 · KNN', link: '/dsml/assignments/a6' },
+        ],
+      },
+    ],
+  },
   { id: 'mfai', code: 'AIN3004', name: 'Mathematical Foundations of AI', faculty: 'Nitin Kumar' },
 ]
 

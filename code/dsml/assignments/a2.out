@@ -1,0 +1,127 @@
+Series from list:
+ 0    10
+1    20
+2    30
+3    40
+dtype: int64
+
+Series from dict:
+ a    10
+b    20
+c    30
+dtype: int64
+
+DataFrame:
+      Name Dept  Marks  Age
+0    Amit  CSE     85   20
+1  Bhavna  ECE     78   21
+2  Chirag  CSE     92   20
+3   Divya   ME     61   22
+4   Eshan  ECE     74   21
+5   Farah  CSE     88   20
+
+Loaded from CSV:
+      Name Dept  Marks  Age
+0    Amit  CSE     85   20
+1  Bhavna  ECE     78   21
+2  Chirag  CSE     92   20
+3   Divya   ME     61   22
+4   Eshan  ECE     74   21
+5   Farah  CSE     88   20
+
+Shape: (6, 4)
+Columns: ['Name', 'Dept', 'Marks', 'Age']
+First 5 rows:
+      Name Dept  Marks  Age
+0    Amit  CSE     85   20
+1  Bhavna  ECE     78   21
+2  Chirag  CSE     92   20
+3   Divya   ME     61   22
+4   Eshan  ECE     74   21
+
+Column 'Marks':
+ 0    85
+1    78
+2    92
+3    61
+4    74
+5    88
+Name: Marks, dtype: int64
+
+Row at index 2:
+ Name     Chirag
+Dept        CSE
+Marks        92
+Age          20
+Name: 2, dtype: object
+
+Marks > 80:
+      Name Dept  Marks  Age
+0    Amit  CSE     85   20
+2  Chirag  CSE     92   20
+5   Farah  CSE     88   20
+
+With missing values:
+      Name Dept  Marks   Age
+0    Amit  CSE   85.0  20.0
+1  Bhavna  ECE    NaN  21.0
+2  Chirag  CSE   92.0  20.0
+3   Divya   ME   61.0  22.0
+4   Eshan  ECE   74.0   NaN
+5   Farah  CSE   88.0  20.0
+
+Null check:
+     Name   Dept  Marks    Age
+0  False  False  False  False
+1  False  False   True  False
+2  False  False  False  False
+3  False  False  False  False
+4  False  False  False   True
+5  False  False  False  False
+Null count per column:
+ Name     0
+Dept     0
+Marks    1
+Age      1
+dtype: int64
+
+Filled with 0:
+      Name Dept  Marks   Age
+0    Amit  CSE   85.0  20.0
+1  Bhavna  ECE    0.0  21.0
+2  Chirag  CSE   92.0  20.0
+3   Divya   ME   61.0  22.0
+4   Eshan  ECE   74.0   0.0
+5   Farah  CSE   88.0  20.0
+
+Marks filled with mean:
+      Name Dept  Marks   Age
+0    Amit  CSE   85.0  20.0
+1  Bhavna  ECE   80.0  21.0
+2  Chirag  CSE   92.0  20.0
+3   Divya   ME   61.0  22.0
+4   Eshan  ECE   74.0   NaN
+5   Farah  CSE   88.0  20.0
+
+After dropping null rows:
+      Name Dept  Marks   Age
+0    Amit  CSE   85.0  20.0
+2  Chirag  CSE   92.0  20.0
+3   Divya   ME   61.0  22.0
+5   Farah  CSE   88.0  20.0
+
+Sorted by Marks (descending):
+      Name Dept  Marks  Age
+2  Chirag  CSE     92   20
+5   Farah  CSE     88   20
+0    Amit  CSE     85   20
+1  Bhavna  ECE     78   21
+4   Eshan  ECE     74   21
+3   Divya   ME     61   22
+
+Average marks per Dept:
+ Dept
+CSE    88.333333
+ECE    76.000000
+ME     61.000000
+Name: Marks, dtype: float64

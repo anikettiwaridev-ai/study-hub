@@ -1,0 +1,15 @@
+Shape: (400, 5)
+
+Missing values:
+ User ID            0
+Gender             0
+Age                0
+EstimatedSalary    0
+Purchased          0
+dtype: int64
+
+Class balance:
+ Purchased
+0    257
+1    143
+Name: count, dtype: int64

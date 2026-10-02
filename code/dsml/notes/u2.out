@@ -1,0 +1,80 @@
+<!-- #region impute -->
+
+| Column | Kind | Present values | Mean | Median | Mode |
+|---|---|---|--:|--:|---|
+| Age | numeric | 25, 32, 28, 41, 36, 28, 23, 45 | 258/8 = **32.25** | **30** | – |
+| Salary | numeric | 50k, 62k, 58k, 91k, 75k, 67k, 48k, 99k | **68750** | **64500** | – |
+| City | categorical | Delhi, Mumbai, Delhi, Pune, Mumbai, Delhi, Pune, Pune | – | – | Delhi 3, Mumbai 2, Pune 3 |
+
+Age and Salary are numeric, so fill with the mean (or the median if skewed). City is categorical, so the mean is meaningless: use the **mode**. Here Delhi and Pune tie at 3; scikit-learn’s `most_frequent` breaks ties by taking the value that sorts first, Delhi. That is a convention, not a finding.
+
+<!-- #endregion impute -->
+<!-- #region binning -->
+
+Sorted prices: 4, 8, 9, 15, 21, 21, 24, 25, 26, 28, 29, 34 (12 values). **Equal-depth (equal-frequency)** bins of 4 values each:
+
+| Bin | Values | Smoothed by bin mean | Smoothed by bin boundaries |
+|---|---|---|---|
+| Bin 1 | 4, 8, 9, 15 | 9, 9, 9, 9 | 4, 4, 4, 15 |
+| Bin 2 | 21, 21, 24, 25 | 22.75, 22.75, 22.75, 22.75 | 21, 21, 25, 25 |
+| Bin 3 | 26, 28, 29, 34 | 29.25, 29.25, 29.25, 29.25 | 26, 26, 26, 34 |
+
+**Equal-width (equal-interval)** bins instead: width = (max − min)/3 = (34 − 4)/3 = 10.
+
+| Interval | Values | Count |
+|---|---|:-:|
+| [4, 14) | 4, 8, 9 | 3 |
+| [14, 24) | 15, 21, 21 | 3 |
+| [24, 34] | 24, 25, 26, 28, 29, 34 | 6 |
+
+Equal width gives equal-sized intervals with uneven counts; equal depth gives equal counts with uneven widths. Smoothing by **boundaries** replaces each value by the nearer edge of its bin (ties go to the lower edge).
+
+<!-- #endregion binning -->
+<!-- #region scaling -->
+
+Ages: 20, 25, 30, 45, 80. min = 20, max = 80, mean μ = 40, population σ = 21.679.
+
+| x | Min-max (x − min)/(max − min) | Z-score (x − μ)/σ | Mean normalisation (x − μ)/(max − min) |
+|:-:|--:|--:|--:|
+| 20 | 0 | −0.9225 | −0.3333 |
+| 25 | 0.0833 | −0.6919 | −0.25 |
+| 30 | 0.1667 | −0.4613 | −0.1667 |
+| 45 | 0.4167 | 0.2306 | 0.0833 |
+| 80 | 1 | 1.8451 | 0.6667 |
+
+Min-max lands exactly in [0, 1]. Z-scores have mean 0 and standard deviation 1, with no fixed range (here −0.92 to 1.85). Mean normalisation has mean 0 and stays within [−1, 1].
+
+<!-- #endregion scaling -->
+<!-- #region outlier-effect -->
+
+Incomes in thousands: 20, 25, 30, 35, 400. One outlier (400) becomes the max:
+
+| Income | Min-max |
+|:-:|--:|
+| 20 | 0 |
+| 25 | 0.0132 |
+| 30 | 0.0263 |
+| 35 | 0.0395 |
+| 400 | 1 |
+
+The four ordinary incomes, which differ by 15 thousand, are crushed into 0 to 0.04. Any model now sees them as practically identical. That is why min-max is "sensitive to outliers" and standardisation (or removing the outlier first) is preferred when outliers exist.
+
+<!-- #endregion outlier-effect -->
+<!-- #region l1l2 -->
+
+| Row | L1 norm (sum of absolute values) | L1-normalised | L2 norm (√ sum of squares) | L2-normalised |
+|---|:-:|---|:-:|---|
+| (3, 4) | 7 | (3/7, 4/7) = (0.4286, 0.5714) | 5 | (3/5, 4/5) = (0.6, 0.8) |
+
+After L1, the absolute values add to 1 (0.4286 + 0.5714). After L2, the squares add to 1 (0.36 + 0.64): the row becomes a **unit vector**, which is the slides’ "unit vector" scaling.
+
+<!-- #endregion l1l2 -->
+<!-- #region iqr -->
+
+The autumn 2024 values, sorted: −2, 55, 57, 61, 62, 65, 67, 70, 72, 73, 95, 500. Split into halves; Q1 is the median of the lower half, Q3 of the upper half.
+
+$$ \begin{aligned} Q_1 &= \tfrac{57 + 61}{2} = 59, \qquad Q_3 = \tfrac{72 + 73}{2} = 72.5, \qquad \text{IQR} = Q_3 - Q_1 = 13.5 \\ \text{fences} &= Q_1 - 1.5\,\text{IQR} = 38.75, \qquad Q_3 + 1.5\,\text{IQR} = 92.75 \end{aligned} $$
+
+Outside the fences: **−2, 95, 500**. The IQR rule catches −2 in one pass, because quartiles are not dragged by 500 the way the mean and σ are. (It also flags 95, which the z-score method calls normal: different rules, different cut-offs. Say which rule you use.)
+
+<!-- #endregion iqr -->

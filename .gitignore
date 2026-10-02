@@ -4,3 +4,4 @@ docs/.vitepress/cache/
 *.exe
 .DS_Store
 .claude/
+__pycache__/

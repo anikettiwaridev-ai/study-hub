@@ -2,11 +2,11 @@
 
 Past papers, assignments and notes for B.Tech CSE (AI) at Punjab Engineering College, solved and checked. It installs on a phone like an app and works offline.
 
-Every C++ program on the site is compiled and run before it is published, and the output you see is the program's real output. A change that breaks a program is not published.
+Every C++ program on the site is compiled and run before it is published, and the output you see is the program's real output. Every worked calculation in the DSML section (each table, number and graph) is printed by a Python script that is re-run the same way. A change that breaks either is not published.
 
 ## Run it on your computer
 
-You need [Node.js](https://nodejs.org) 20 or newer. g++ is optional; you only need it to add or change programs.
+You need [Node.js](https://nodejs.org) 20 or newer. g++ and Python 3 are optional: you only need them to add or change programs and DSML calculations.
 
 ```bash
 npm install
@@ -44,21 +44,32 @@ docs/
   ds/                      Data Structures: the same layout, plus
     quiz-clock.md          the 10-minute quiz routine and timed drills
     quizzes/  practice/    every quiz (answerable on the page) and practice sheet
+  dsml/                    Data Science and Machine Learning: the same layout, plus
+    formulas.md            the formula sheet
+    practice.md            numerical drills
+    quiz-practice.md       two timed quiz sets
+    papers/  notes/  assignments/
   .vitepress/
     config.mts             site settings, offline support
     subjects.js            the list of subjects and their sidebars
     theme/
       data/oop.js          every paper, assignment and repeat cluster for OOP
       data/ds.js           the same for Data Structures (papers, quizzes, practice sheets)
+      data/dsml.js         the same for DSML (papers, assignments, the mock)
       components/          question rows, MCQs, the repeat map and so on
 code/
   oop/                     every C++ program, as real files
     papers/ assignments/ notes/ mock/ quiz/
   ds/
     papers/ notes/ quiz/ practice/ mock/
+  dsml/                    Python scripts that print the DSML worked answers (standard library only)
+    _hub.py  _svg.py       shared helpers: number formatting, tables, regions, SVG figures
+    papers/ notes/ practice/ mock/
+    assignments/           the six lab scripts as submitted, their data, and recorded output
 scripts/
-  verify.mjs               compiles and runs every program, saves its output
+  verify.mjs               compiles and runs every program, runs every script, saves the output
   check-data.mjs           checks the repeat data is consistent
+  record-labs.py           records a run of the DSML lab scripts (needs pandas and scikit-learn)
 ```
 
 ## Adding a question
@@ -130,6 +141,24 @@ Programs are compiled as strict standard C++17 (`-std=c++17 -Wall -Wextra -pedan
 
 If the compiler warns about undefined behaviour and there is no `ub` file, the check fails on purpose.
 
+## Adding a DSML calculation
+
+DSML answers are calculations, so instead of programs the section uses scripts that print the worked answer as Markdown.
+
+1. Write `code/dsml/<folder>/<name>.py` using only the standard library. Import the helpers with `from _hub import num, tex, table, p, math_block, region` (and `from _svg import Plot, figure` for a graph). Wrap each answer in `with region('q2'):`.
+2. Run `npm run verify`. It runs the script and saves `<name>.out`.
+3. Pull a region into a page:
+
+```md
+<!--@include: @/../code/dsml/papers/s25.out#q2-->
+```
+
+4. Commit the `.py` and the `.out` together. `npm run check` re-runs the script in CI and fails if the output changed.
+
+Write formulas as `$…$` or `$$…$$` (MathJax, rendered at build time). In a Markdown table, never use a bare `|` inside a cell, even inside maths: write `\lvert x\rvert`, `\mid`, or the character `∣`. Do not write a currency `$` in prose; it starts a formula.
+
+**The lab assignments** need pandas and scikit-learn, which CI does not install. Each has a `.expect` file containing `recorded`, so verify only checks that its output exists. To refresh the output and the charts, run `scripts/record-labs.py` with a Python that has those packages; it writes one `.out` per `# region qN` of each script and the charts to `docs/public/dsml/assignments/`.
+
 ## Recording repeats
 
 Each subject's data file lists **clusters**: topics that keep coming back. Inside a cluster, appearances are grouped:
@@ -153,7 +182,7 @@ When a paper's page is ready, set its `href` in the data file (for example `href
 1. Add it to `docs/.vitepress/subjects.js`, with a `sidebar`. The sidebar is one list for the whole site: each subject is a collapsible group in it, the one you are in opens by itself, and subjects without a `sidebar` show "Not added yet". Copy the OOP entry as the template.
 2. Create `docs/<id>/index.md`.
 3. If it has papers, create `docs/.vitepress/theme/data/<id>.js` shaped like `oop.js`, and register it in `data/index.js`.
-4. For maths, turn on formula rendering: set `markdown: { math: true }` in `config.mts` and run `npm add -D markdown-it-mathjax3`.
+4. Formulas (`$…$`, `$$…$$`) already render everywhere; see "Adding a DSML calculation".
 
 ## Checking everything before you push
 

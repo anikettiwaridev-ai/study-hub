@@ -1,0 +1,18 @@
+Accuracy: 0.9333
+
+Confusion Matrix (rows = actual, cols = predicted):
+                 Iris-setosa  Iris-versicolor  Iris-virginica
+Iris-setosa               10                0               0
+Iris-versicolor            0               10               0
+Iris-virginica             0                2               8
+
+Classification Report:
+                  precision    recall  f1-score   support
+
+    Iris-setosa       1.00      1.00      1.00        10
+Iris-versicolor       0.83      1.00      0.91        10
+ Iris-virginica       1.00      0.80      0.89        10
+
+       accuracy                           0.93        30
+      macro avg       0.94      0.93      0.93        30
+   weighted avg       0.94      0.93      0.93        30

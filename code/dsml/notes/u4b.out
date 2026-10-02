@@ -1,0 +1,263 @@
+<!-- #region distances -->
+
+p = (1, 2, 3), q = (4, 6, 3); the differences are ∣pᵢ − qᵢ∣ = 3, 4, 0.
+
+| Metric | Formula | Working | Value |
+|---|---|---|---|
+| Euclidean (L2) | √Σ(pᵢ − qᵢ)² | √(3² + 4² + 0²) = √25 | **5** |
+| Manhattan (L1) | Σ∣pᵢ − qᵢ∣ | 3 + 4 + 0 | **7** |
+| Minkowski, r = 3 | (Σ∣pᵢ − qᵢ∣³)^(1/3) | (27 + 64 + 0)^(1/3) = 91^(1/3) | **4.4979** |
+| Cosine similarity | p·q / (‖p‖ ‖q‖) | 25 / (√14 × √61) | **0.8555** |
+
+Minkowski with r = 1 is Manhattan and with r = 2 is Euclidean. Cosine is a **similarity** (1 = same direction), not a distance; it ignores length, which is why it suits text.
+
+<!-- #endregion distances -->
+<!-- #region knn -->
+
+T-shirt sizes by height (cm) and weight (kg). New customer: **(161, 61)**.
+
+| # | Height | Weight | Size | Distance to (161, 61) | d |
+|:-:|:-:|:-:|:-:|---|--:|
+| 1 | 158 | 58 | M | √(9 + 9) = √18 | 4.243 |
+| 2 | 158 | 59 | M | √(9 + 4) = √13 | 3.606 |
+| 3 | 160 | 59 | M | √(1 + 4) = √5 | 2.236 |
+| 4 | 163 | 61 | M | √(4 + 0) = √4 | 2 |
+| 5 | 165 | 61 | L | √(16 + 0) = √16 | 4 |
+| 6 | 165 | 62 | L | √(16 + 1) = √17 | 4.123 |
+| 7 | 168 | 63 | L | √(49 + 4) = √53 | 7.28 |
+| 8 | 170 | 64 | L | √(81 + 9) = √90 | 9.487 |
+
+- **k = 3:** nearest are #4, #3, #2 → M 3, L 0 → **M**
+- **k = 5:** nearest are #4, #3, #2, #5, #6 → M 3, L 2 → **M**
+- **k = 5, weighted** (w = 1/d²): M = 0.527, L = 0.121 → **M**, more decisively, because the M neighbours are closer.
+
+<svg class="fig" viewBox="0 0 480 300" role="img" aria-label="T-shirt sizes and the new customer">
+<line class="ax" x1="40" y1="266" x2="466" y2="266"/>
+<line class="ax" x1="40" y1="266" x2="40" y2="12"/>
+<line class="ax" x1="40" y1="266" x2="40" y2="270"/>
+<text x="40" y="282" text-anchor="middle">156</text>
+<line class="ax" x1="146.5" y1="266" x2="146.5" y2="270"/>
+<text x="146.5" y="282" text-anchor="middle">160</text>
+<line class="ax" x1="253" y1="266" x2="253" y2="270"/>
+<text x="253" y="282" text-anchor="middle">164</text>
+<line class="ax" x1="359.5" y1="266" x2="359.5" y2="270"/>
+<text x="359.5" y="282" text-anchor="middle">168</text>
+<line class="ax" x1="466" y1="266" x2="466" y2="270"/>
+<text x="466" y="282" text-anchor="middle">172</text>
+<line class="ax" x1="36" y1="266" x2="40" y2="266"/>
+<text x="33" y="270" text-anchor="end">56</text>
+<line class="ax" x1="36" y1="164.4" x2="40" y2="164.4"/>
+<text x="33" y="168.4" text-anchor="end">60</text>
+<line class="ax" x1="36" y1="62.8" x2="40" y2="62.8"/>
+<text x="33" y="66.8" text-anchor="end">64</text>
+<text class="lbl" x="253" y="294" text-anchor="middle">Height (cm)</text>
+<text class="lbl" x="12" y="139" text-anchor="middle" transform="rotate(-90 12 139)">Weight (kg)</text>
+<text class="ta" x="93.2" y="220.2" text-anchor="middle" style="font-size:15px;font-weight:600">M</text>
+<text class="ta" x="93.2" y="194.8" text-anchor="middle" style="font-size:15px;font-weight:600">M</text>
+<text class="ta" x="146.5" y="194.8" text-anchor="middle" style="font-size:15px;font-weight:600">M</text>
+<text class="ta" x="226.4" y="144" text-anchor="middle" style="font-size:15px;font-weight:600">M</text>
+<text class="tb" x="279.6" y="144" text-anchor="middle" style="font-size:15px;font-weight:600">L</text>
+<text class="tb" x="279.6" y="118.6" text-anchor="middle" style="font-size:15px;font-weight:600">L</text>
+<text class="tb" x="359.5" y="93.2" text-anchor="middle" style="font-size:15px;font-weight:600">L</text>
+<text class="tb" x="412.8" y="67.8" text-anchor="middle" style="font-size:15px;font-weight:600">L</text>
+<circle class="hollow" cx="173.1" cy="139" r="5"/>
+<ellipse class="a" style="stroke-width:1.2" cx="173.1" cy="139.0" rx="101.2" ry="96.6"/>
+<text class="ta" x="93.2" y="211.4" text-anchor="end">k = 3</text>
+<ellipse class="m" style="stroke-width:1.2" cx="173.1" cy="139.0" rx="111.4" ry="106.2"/>
+<text x="257.3" y="62.5" text-anchor="start">k = 5</text>
+<text x="181.1" y="155" text-anchor="start">new</text>
+</svg>
+
+<p class="fig-cap">M = medium, L = large. The solid ring holds the 3 nearest customers, the dashed ring the 5 nearest (the rings look oval only because the axes have different scales).</p>
+
+<!-- #endregion knn -->
+<!-- #region curse -->
+
+| Pair | Ones shared | Euclidean | Cosine |
+|---|:-:|:-:|:-:|
+| 111111111110 vs 011111111111 | 10 | 1.4142 | 0.9091 |
+| 100000000000 vs 000000000001 | 0 | 1.4142 | 0 |
+
+Euclidean distance calls both pairs equally far apart, although the first pair has 10 ones in common and the second none. Normalising to unit length (cosine) separates them. In high dimensions points become almost equidistant, so "nearest" stops meaning "similar".
+
+<!-- #endregion curse -->
+<!-- #region svm -->
+
+A trained linear SVM with **w = (1, 1), b = −3**: the boundary is x₁ + x₂ = 3, the plus-plane x₁ + x₂ = 4, the minus-plane x₁ + x₂ = 2.
+
+| Point | Class | w·x + b | Value | Where it sits |
+|:-:|:-:|---|--:|---|
+| (3, 1) | +1 | 3 + 1 − 3 | 1 | on the margin: **support vector** |
+| (2, 2) | +1 | 2 + 2 − 3 | 1 | on the margin: **support vector** |
+| (4, 2) | +1 | 4 + 2 − 3 | 3 | outside the margin |
+| (3, 3) | +1 | 3 + 3 − 3 | 3 | outside the margin |
+| (1, 1) | −1 | 1 + 1 − 3 | −1 | on the margin: **support vector** |
+| (0, 2) | −1 | 0 + 2 − 3 | −1 | on the margin: **support vector** |
+| (0, 0) | −1 | 0 + 0 − 3 | −3 | outside the margin |
+| (1, 0) | −1 | 1 + 0 − 3 | −2 | outside the margin |
+
+**Margin = 2/‖w‖ = 2/√2 = 1.4142.** Four points touch the margin planes (value ±1): they are the support vectors, and only they decide the boundary. A new point (2.5, 1) gives 2.5 + 1 − 3 = 0.5 > 0 → class **+1** (inside the margin, so the classifier is less sure of it).
+
+<svg class="fig narrow" viewBox="0 0 400 300" role="img" aria-label="A maximum-margin linear SVM">
+<line class="ax" x1="34" y1="270" x2="388" y2="270"/>
+<line class="ax" x1="34" y1="270" x2="34" y2="12"/>
+<line class="ax" x1="69.4" y1="270" x2="69.4" y2="274"/>
+<text x="69.4" y="286" text-anchor="middle">0</text>
+<line class="ax" x1="140.2" y1="270" x2="140.2" y2="274"/>
+<text x="140.2" y="286" text-anchor="middle">1</text>
+<line class="ax" x1="211" y1="270" x2="211" y2="274"/>
+<text x="211" y="286" text-anchor="middle">2</text>
+<line class="ax" x1="281.8" y1="270" x2="281.8" y2="274"/>
+<text x="281.8" y="286" text-anchor="middle">3</text>
+<line class="ax" x1="352.6" y1="270" x2="352.6" y2="274"/>
+<text x="352.6" y="286" text-anchor="middle">4</text>
+<line class="ax" x1="30" y1="238.5" x2="34" y2="238.5"/>
+<text x="27" y="242.5" text-anchor="end">0</text>
+<line class="ax" x1="30" y1="175.6" x2="34" y2="175.6"/>
+<text x="27" y="179.6" text-anchor="end">1</text>
+<line class="ax" x1="30" y1="112.7" x2="34" y2="112.7"/>
+<text x="27" y="116.7" text-anchor="end">2</text>
+<line class="ax" x1="30" y1="49.8" x2="34" y2="49.8"/>
+<text x="27" y="53.8" text-anchor="end">3</text>
+<text class="lbl" x="211" y="294" text-anchor="middle">x₁</text>
+<text class="lbl" x="12" y="141" text-anchor="middle" transform="rotate(-90 12 141)">x₂</text>
+<line class="a" x1="26.9" y1="12" x2="317.2" y2="270"/>
+<line class="m" x1="97.7" y1="12" x2="388" y2="270"/>
+<line class="m" x1="-43.9" y1="12" x2="246.4" y2="270"/>
+<text class="ta" x="281.8" y="180.6" text-anchor="middle" style="font-size:15px;font-weight:600">+</text>
+<text class="ta" x="211" y="117.7" text-anchor="middle" style="font-size:15px;font-weight:600">+</text>
+<text class="ta" x="352.6" y="117.7" text-anchor="middle" style="font-size:15px;font-weight:600">+</text>
+<text class="ta" x="281.8" y="54.8" text-anchor="middle" style="font-size:15px;font-weight:600">+</text>
+<text class="tb" x="140.2" y="180.6" text-anchor="middle" style="font-size:15px;font-weight:600">−</text>
+<text class="tb" x="69.4" y="117.7" text-anchor="middle" style="font-size:15px;font-weight:600">−</text>
+<text class="tb" x="69.4" y="243.5" text-anchor="middle" style="font-size:15px;font-weight:600">−</text>
+<text class="tb" x="140.2" y="243.5" text-anchor="middle" style="font-size:15px;font-weight:600">−</text>
+<circle class="m" cx="281.8" cy="175.6" r="10"/>
+<circle class="m" cx="211.0" cy="112.7" r="10"/>
+<circle class="m" cx="140.2" cy="175.6" r="10"/>
+<circle class="m" cx="69.4" cy="112.7" r="10"/>
+<text x="83.6" y="43.5" text-anchor="start">margin = 2/‖w‖</text>
+</svg>
+
+<p class="fig-cap">Solid line: the decision boundary. Dashed: the two margin planes. Circled: the support vectors.</p>
+
+<!-- #endregion svm -->
+<!-- #region kernel -->
+
+<div class="fig-row">
+<svg class="fig" viewBox="0 0 240 200" role="img" aria-label="One dimension: not separable by a single threshold">
+<line class="ax" x1="13.1" y1="96" x2="226.9" y2="96"/>
+<text class="ta" x="28.3" y="101" text-anchor="middle" style="font-size:15px;font-weight:600">+</text>
+<text x="28.3" y="118" text-anchor="middle">-3</text>
+<text class="ta" x="58.9" y="101" text-anchor="middle" style="font-size:15px;font-weight:600">+</text>
+<text x="58.9" y="118" text-anchor="middle">-2</text>
+<text class="tb" x="89.4" y="101" text-anchor="middle" style="font-size:15px;font-weight:600">−</text>
+<text x="89.4" y="118" text-anchor="middle">-1</text>
+<text class="tb" x="120" y="101" text-anchor="middle" style="font-size:15px;font-weight:600">−</text>
+<text x="120" y="118" text-anchor="middle">0</text>
+<text class="tb" x="150.6" y="101" text-anchor="middle" style="font-size:15px;font-weight:600">−</text>
+<text x="150.6" y="118" text-anchor="middle">1</text>
+<text class="ta" x="181.1" y="101" text-anchor="middle" style="font-size:15px;font-weight:600">+</text>
+<text x="181.1" y="118" text-anchor="middle">2</text>
+<text class="ta" x="211.7" y="101" text-anchor="middle" style="font-size:15px;font-weight:600">+</text>
+<text x="211.7" y="118" text-anchor="middle">3</text>
+<text class="lbl" x="16.1" y="33.1" text-anchor="start">1-D: no single cut works</text>
+</svg>
+<svg class="fig" viewBox="0 0 240 200" role="img" aria-label="Mapped to (x, x squared): separable by a line">
+<line class="ax" x1="26" y1="178" x2="230" y2="178"/>
+<line class="ax" x1="26" y1="178" x2="26" y2="22"/>
+<polyline class="m" points="34.5,9.1 35.9,13.9 37.3,18.5 38.8,23.1 40.2,27.6 41.6,32.1 43,36.4 44.4,40.7 45.8,45 47.3,49.1 48.7,53.2 50.1,57.2 51.5,61.1 52.9,65 54.3,68.8 55.8,72.5 57.2,76.2 58.6,79.7 60,83.2 61.4,86.7 62.8,90 64.2,93.3 65.7,96.5 67.1,99.7 68.5,102.7 69.9,105.7 71.3,108.7 72.8,111.5 74.2,114.3 75.6,117 77,119.6 78.4,122.2 79.8,124.7 81.2,127.1 82.7,129.5 84.1,131.7 85.5,133.9 86.9,136.1 88.3,138.1 89.8,140.1 91.2,142 92.6,143.9 94,145.6 95.4,147.3 96.8,149 98.2,150.5 99.7,152 101.1,153.4 102.5,154.7 103.9,156 105.3,157.2 106.8,158.3 108.2,159.4 109.6,160.3 111,161.2 112.4,162.1 113.8,162.8 115.3,163.5 116.7,164.1 118.1,164.7 119.5,165.1 120.9,165.5 122.3,165.9 123.8,166.1 125.2,166.3 126.6,166.4 128,166.4 129.4,166.4 130.8,166.3 132.2,166.1 133.7,165.9 135.1,165.5 136.5,165.1 137.9,164.7 139.3,164.1 140.8,163.5 142.2,162.8 143.6,162.1 145,161.2 146.4,160.3 147.8,159.4 149.2,158.3 150.7,157.2 152.1,156 153.5,154.7 154.9,153.4 156.3,152 157.8,150.5 159.2,149 160.6,147.3 162,145.6 163.4,143.9 164.8,142 166.3,140.1 167.7,138.1 169.1,136.1 170.5,133.9 171.9,131.7 173.3,129.5 174.8,127.1 176.2,124.7 177.6,122.2 179,119.6 180.4,117 181.8,114.3 183.2,111.5 184.7,108.7 186.1,105.7 187.5,102.7 188.9,99.7 190.3,96.5 191.8,93.3 193.2,90 194.6,86.7 196,83.2 197.4,79.7 198.8,76.2 200.3,72.5 201.7,68.8 203.1,65 204.5,61.1 205.9,57.2 207.3,53.2 208.8,49.1 210.2,45 211.6,40.7 213,36.4 214.4,32.1 215.8,27.6 217.2,23.1 218.7,18.5 220.1,13.9 221.5,9.1"/>
+<text class="ta" x="43" y="41.4" text-anchor="middle" style="font-size:15px;font-weight:600">+</text>
+<text class="ta" x="71.3" y="113.7" text-anchor="middle" style="font-size:15px;font-weight:600">+</text>
+<text class="tb" x="99.7" y="157" text-anchor="middle" style="font-size:15px;font-weight:600">−</text>
+<text class="tb" x="128" y="171.4" text-anchor="middle" style="font-size:15px;font-weight:600">−</text>
+<text class="tb" x="156.3" y="157" text-anchor="middle" style="font-size:15px;font-weight:600">−</text>
+<text class="ta" x="184.7" y="113.7" text-anchor="middle" style="font-size:15px;font-weight:600">+</text>
+<text class="ta" x="213" y="41.4" text-anchor="middle" style="font-size:15px;font-weight:600">+</text>
+<line class="a" x1="28.8" y1="130.3" x2="227.2" y2="130.3"/>
+<text class="lbl" x="31.7" y="33.6" text-anchor="start">z = (x, x²): a line works</text>
+<text class="ta" x="224.3" y="123.1" text-anchor="end">x² = 2.5</text>
+</svg>
+<div></div>
+</div>
+
+<p class="fig-cap">No threshold on x separates the classes (− in the middle, + on both sides). Add the feature x² and the horizontal line x² = 2.5 separates them.</p>
+
+**Why the kernel is a trick.** For a = (1, 2) and b = (3, 1), the polynomial kernel is (a·b + 1)² = (3 + 2 + 1)² = **36**: one dot product and a square. The same number by building the 6-dimensional features φ(x) = (1, √2x₁, √2x₂, x₁², x₂², √2x₁x₂) and taking their dot product: 1 + 6 + 4 + 9 + 4 + 12 = **36**. The kernel gets the high-dimensional answer without ever building φ.
+
+<!-- #endregion kernel -->
+<!-- #region nb -->
+
+Ten days: the weather, the state of the car, and whether the person went out.
+
+| Day | Weather | Car | Decision |
+|:-:|---|---|---|
+| 1 | Sunny | Working | Go out |
+| 2 | Rainy | Broken | Go out |
+| 3 | Sunny | Working | Go out |
+| 4 | Sunny | Working | Go out |
+| 5 | Sunny | Working | Go out |
+| 6 | Rainy | Broken | Stay home |
+| 7 | Rainy | Broken | Stay home |
+| 8 | Sunny | Working | Stay home |
+| 9 | Sunny | Broken | Stay home |
+| 10 | Rainy | Broken | Stay home |
+
+**Step 1. Count, per class** (the "training" of Naive Bayes is just this table):
+
+| Class | P(class) | P(Sunny ∣ c) | P(Rainy ∣ c) | P(Working ∣ c) | P(Broken ∣ c) |
+|---|:-:|:-:|:-:|:-:|:-:|
+| Go out | 5/10 | 4/5 | 1/5 | 4/5 | 1/5 |
+| Stay home | 5/10 | 2/5 | 3/5 | 1/5 | 4/5 |
+
+**Classify (Sunny, Working).** Go out: 5/10 × 4/5 × 4/5 = **0.32**; Stay home: 5/10 × 2/5 × 1/5 = **0.04**. → **Go out**. Normalised, P(Go out ∣ Sunny, Working) = 0.32/0.36 = 0.889.
+
+**Classify (Rainy, Working).** Go out: 5/10 × 1/5 × 4/5 = **0.08**; Stay home: 5/10 × 3/5 × 1/5 = **0.06**. → **Go out**. Normalised, P(Go out ∣ Rainy, Working) = 0.08/0.14 = 0.571.
+
+<!-- #endregion nb -->
+<!-- #region tree -->
+
+| # | Income | Credit | Loan approved |
+|:-:|---|---|---|
+| 1 | High | Good | Yes |
+| 2 | High | Bad | Yes |
+| 3 | High | Good | Yes |
+| 4 | Low | Good | Yes |
+| 5 | Low | Bad | No |
+| 6 | Low | Bad | No |
+| 7 | High | Bad | No |
+| 8 | Low | Good | Yes |
+
+**Parent:** 5 Yes, 3 No. Entropy H = −(5/8)log₂(5/8) − (3/8)log₂(3/8) = **0.9544**; Gini = 1 − (5/8)² − (3/8)² = **0.4688**.
+
+| Split on | Branches | Weighted H | Info gain | Weighted Gini | Gini decrease |
+|---|---|--:|--:|--:|--:|
+| Income | High: 3Y 1N (H = 0.8113, Gini = 0.375); Low: 2Y 2N (H = 1, Gini = 0.5) | 0.9056 | **0.0488** | 0.4375 | **0.0312** |
+| Credit | Bad: 1Y 3N (H = 0.8113, Gini = 0.375); Good: 4Y 0N (H = 0, Gini = 0) | 0.4056 | **0.5488** | 0.1875 | **0.2812** |
+
+**Credit wins on both measures.** Its Good branch is pure (4 Yes, 0 No), so it becomes a leaf at once. The Bad branch (rows 2, 5, 6, 7: 1 Yes, 3 No) is split again on Income: Low → No (2 of 2), High → mixed (1 Yes, 1 No: a leaf by majority, or a tie to report).
+
+<!-- #endregion tree -->
+<!-- #region golftree -->
+
+<svg class="fig" viewBox="0 0 560 230" role="img" aria-label="The Play Golf decision tree">
+<line class="ax" x1="280" y1="38" x2="100" y2="96"/><text x="182.0" y="70.0" text-anchor="end">Sunny</text>
+<line class="ax" x1="280" y1="38" x2="280" y2="96"/><text x="288.0" y="70.0" text-anchor="start">Overcast</text>
+<line class="ax" x1="280" y1="38" x2="460" y2="96"/><text x="378.0" y="70.0" text-anchor="start">Rainy</text>
+<line class="ax" x1="100" y1="122" x2="40" y2="186"/><text x="62.0" y="157.0" text-anchor="end">High</text>
+<line class="ax" x1="100" y1="122" x2="160" y2="186"/><text x="138.0" y="157.0" text-anchor="start">Normal</text>
+<line class="ax" x1="460" y1="122" x2="400" y2="186"/><text x="422.0" y="157.0" text-anchor="end">Strong</text>
+<line class="ax" x1="460" y1="122" x2="520" y2="186"/><text x="498.0" y="157.0" text-anchor="start">Weak</text>
+<rect class="box" x="234" y="12" width="92" height="26" rx="4"/><text x="280" y="30" text-anchor="middle" class="lbl">Outlook</text>
+<rect class="box" x="54" y="96" width="92" height="26" rx="4"/><text x="100" y="114" text-anchor="middle" class="lbl">Humidity</text>
+<rect class="area" x="250" y="96" width="60" height="26" rx="13"/><text x="280" y="114" text-anchor="middle" class="tc" style="font-weight:600">Yes</text>
+<rect class="box" x="414" y="96" width="92" height="26" rx="4"/><text x="460" y="114" text-anchor="middle" class="lbl">Wind</text>
+<rect class="area" x="10" y="186" width="60" height="26" rx="13"/><text x="40" y="204" text-anchor="middle" class="tb" style="font-weight:600">No</text>
+<rect class="area" x="130" y="186" width="60" height="26" rx="13"/><text x="160" y="204" text-anchor="middle" class="tc" style="font-weight:600">Yes</text>
+<rect class="area" x="370" y="186" width="60" height="26" rx="13"/><text x="400" y="204" text-anchor="middle" class="tb" style="font-weight:600">No</text>
+<rect class="area" x="490" y="186" width="60" height="26" rx="13"/><text x="520" y="204" text-anchor="middle" class="tc" style="font-weight:600">Yes</text>
+</svg>
+
+<p class="fig-cap">The full tree ID3 grows from the Play Golf table. Outlook wins at the root; Overcast is pure; Sunny splits on Humidity and Rainy on Wind, and every leaf is then pure.</p>
+
+<!-- #endregion golftree -->

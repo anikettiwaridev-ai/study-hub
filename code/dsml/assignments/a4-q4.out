@@ -1,0 +1,15 @@
+Duplicate rows flagged:
+ 0    False
+1    False
+2    False
+3    False
+4    False
+5    False
+6    False
+7     True
+8    False
+9    False
+dtype: bool
+Number of duplicates: 1
+Shape before: (10, 6) | after: (9, 6)
+Duplicates on Name only: 1

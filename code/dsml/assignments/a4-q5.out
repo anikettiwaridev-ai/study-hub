@@ -1,0 +1,13 @@
+Label encoding of Department:
+  Department  Department_LE
+0         IT              1
+1         HR              0
+2         IT              1
+3      Sales              2
+4         IT              1
+5         HR              0
+6      Sales              2
+8         IT              1
+9         HR              0
+Classes learned: ['HR', 'IT', 'Sales']
+Inverse check: ['HR' 'IT' 'Sales']

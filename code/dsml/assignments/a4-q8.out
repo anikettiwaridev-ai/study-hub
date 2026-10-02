@@ -1,0 +1,11 @@
+Engineered features:
+      Age   Salary  Experience  Salary_per_Year_Exp  Senior Age_Group
+0  25.00  50000.0           2             25000.00       0     Young
+1  32.00  62000.0           8              7750.00       0       Mid
+2  32.25  58000.0           5             11600.00       0       Mid
+3  28.00  68750.0           3             22916.67       0     Young
+4  41.00  91000.0          15              6066.67       1    Senior
+5  36.00  75000.0          10              7500.00       1       Mid
+6  32.25  67000.0           6             11166.67       0       Mid
+8  23.00  48000.0           1             48000.00       0     Young
+9  45.00  99000.0          20              4950.00       1    Senior

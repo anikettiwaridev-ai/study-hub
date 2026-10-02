@@ -1,0 +1,179 @@
+<!-- #region q2 -->
+
+**Step 1. Predict with the starting values** $w_0 = 0,\ b_0 = 0$, so every $\hat y_i = 0$.
+
+| i | $x_i$ | $y_i$ | $\hat y_i = wx_i + b$ | $y_i - \hat y_i$ | $x_i(y_i - \hat y_i)$ |
+|:-:|:-:|:-:|--:|--:|--:|
+| 1 | 1 | 2 | 0 | 2 | 2 |
+| 2 | 2 | 4 | 0 | 4 | 8 |
+| 3 | 3 | 6 | 0 | 6 | 18 |
+| **Σ** |  |  |  | **12** | **28** |
+
+**Step 2. The gradients** (formulas given in the question):
+
+$$ \begin{aligned} \frac{\partial J}{\partial w} &= -\frac{2}{n}\sum x_i\,(y_i - \hat y_i) = -\frac{2}{3}(28) = -18.6667 \\ \frac{\partial J}{\partial b} &= -\frac{2}{n}\sum (y_i - \hat y_i) = -\frac{2}{3}(12) = -8 \end{aligned} $$
+
+**Step 3. Update both from the old values** (move against the gradient):
+
+$$ \begin{aligned} w_1 &= w_0 - \eta\,\frac{\partial J}{\partial w} = 0 - 0.1\,(-18.6667) = \mathbf{1.8667} \\ b_1 &= b_0 - \eta\,\frac{\partial J}{\partial b} = 0 - 0.1\,(-8) = \mathbf{0.8} \end{aligned} $$
+
+**Check that it worked.** The cost before the step is $J(0, 0) = \frac{1}{3}(2^2 + 4^2 + 6^2) = 18.6667$. After it, the predictions are 2.6667, 4.5333, 6.4, so $J(1.8667, 0.8) = 0.2963$. The cost fell, so the step went the right way.
+
+<!-- #endregion q2 -->
+<!-- #region q3 -->
+
+There are **3 positives** (S1, S3, S5) and **3 negatives** (S2, S4, S6). At threshold t, predict positive when the probability is **≥ t**.
+
+| Threshold | Called positive | TP | FP | FN | TN | TPR = TP/(TP+FN) | FPR = FP/(FP+TN) |
+|:-:|---|:-:|:-:|:-:|:-:|--:|--:|
+| 0.9 | S1 | 1 | 0 | 2 | 3 | 1/3 = 0.333 | 0/3 = 0 |
+| 0.8 | S1, S2 | 1 | 1 | 2 | 2 | 1/3 = 0.333 | 1/3 = 0.333 |
+| 0.7 | S1, S2, S3 | 2 | 1 | 1 | 2 | 2/3 = 0.667 | 1/3 = 0.333 |
+| 0.6 | S1, S2, S3, S4 | 2 | 2 | 1 | 1 | 2/3 = 0.667 | 2/3 = 0.667 |
+| 0.4 | S1, S2, S3, S4, S5 | 3 | 2 | 0 | 1 | 3/3 = 1 | 2/3 = 0.667 |
+| 0.3 | S1, S2, S3, S4, S5, S6 | 3 | 3 | 0 | 0 | 3/3 = 1 | 3/3 = 1 |
+
+**The ROC points**, adding (0, 0) for a threshold above every score: (0, 0), (0, 0.333), (0.333, 0.333), (0.333, 0.667), (0.667, 0.667), (0.667, 1), (1, 1).
+
+<svg class="fig narrow" viewBox="0 0 360 320" role="img" aria-label="ROC curve for the six samples">
+<line class="grid" x1="46" y1="280" x2="346" y2="280"/>
+<line class="grid" x1="46" y1="190.7" x2="346" y2="190.7"/>
+<line class="grid" x1="46" y1="101.3" x2="346" y2="101.3"/>
+<line class="grid" x1="46" y1="12" x2="346" y2="12"/>
+<line class="ax" x1="46" y1="280" x2="346" y2="280"/>
+<line class="ax" x1="46" y1="280" x2="46" y2="12"/>
+<line class="ax" x1="46" y1="280" x2="46" y2="284"/>
+<text x="46" y="296" text-anchor="middle">0</text>
+<line class="ax" x1="146" y1="280" x2="146" y2="284"/>
+<text x="146" y="296" text-anchor="middle">0.33</text>
+<line class="ax" x1="246" y1="280" x2="246" y2="284"/>
+<text x="246" y="296" text-anchor="middle">0.67</text>
+<line class="ax" x1="346" y1="280" x2="346" y2="284"/>
+<text x="346" y="296" text-anchor="middle">1</text>
+<line class="ax" x1="42" y1="280" x2="46" y2="280"/>
+<text x="39" y="284" text-anchor="end">0</text>
+<line class="ax" x1="42" y1="190.7" x2="46" y2="190.7"/>
+<text x="39" y="194.7" text-anchor="end">0.33</text>
+<line class="ax" x1="42" y1="101.3" x2="46" y2="101.3"/>
+<text x="39" y="105.3" text-anchor="end">0.67</text>
+<line class="ax" x1="42" y1="12" x2="46" y2="12"/>
+<text x="39" y="16" text-anchor="end">1</text>
+<text class="lbl" x="196" y="314" text-anchor="middle">False positive rate (FPR)</text>
+<text class="lbl" x="12" y="146" text-anchor="middle" transform="rotate(-90 12 146)">True positive rate (TPR)</text>
+<polygon class="area" points="46,280 46,280 46,190.7 146,190.7 146,101.3 246,101.3 246,12 346,12 346,280"/>
+<line class="m" x1="46" y1="280" x2="346" y2="12"/>
+<polyline class="a" points="46,280 46,190.7 146,190.7 146,101.3 246,101.3 246,12 346,12"/>
+<circle class="fa" cx="46" cy="280" r="3.5"/>
+<circle class="fa" cx="46" cy="190.7" r="3.5"/>
+<circle class="fa" cx="146" cy="190.7" r="3.5"/>
+<circle class="fa" cx="146" cy="101.3" r="3.5"/>
+<circle class="fa" cx="246" cy="101.3" r="3.5"/>
+<circle class="fa" cx="246" cy="12" r="3.5"/>
+<circle class="fa" cx="346" cy="12" r="3.5"/>
+<text x="211" y="159.4" text-anchor="start">random guess (AUC 0.5)</text>
+<text class="ta" x="121" y="65.6" text-anchor="start">AUC = 0.667</text>
+</svg>
+
+<p class="fig-cap">The staircase rises one step for every positive and moves right for every negative. The shaded area is the AUC.</p>
+
+**AUC by rectangles** (each piece is width × height): 0.333 × 0.333 + 0.333 × 0.667 + 0.333 × 1 = **0.667**.
+
+**Check by counting pairs.** AUC is also the chance that a random positive scores higher than a random negative: 6 of the 9 (positive, negative) pairs are ordered correctly, and 6/9 = 0.667.
+
+<!-- #endregion q3 -->
+<!-- #region q4 -->
+
+**Iteration 1** with c1 = 3, c2 = 4. Assign each point to the nearer centre:
+
+| Point | Distance to c1 = 3 | Distance to c2 = 4 | Cluster |
+|:-:|--:|--:|:-:|
+| 0 | 3 | 4 | C1 |
+| 2 | 1 | 2 | C1 |
+| 4 | 1 | 0 | C2 |
+| 6 | 3 | 2 | C2 |
+| 24 | 21 | 20 | C2 |
+| 26 | 23 | 22 | C2 |
+
+New centres: c1 = mean(0, 2) = **1**, c2 = mean(4, 6, 24, 26) = **15**.
+
+**Iteration 2** with c1 = 1, c2 = 15. Assign each point to the nearer centre:
+
+| Point | Distance to c1 = 1 | Distance to c2 = 15 | Cluster |
+|:-:|--:|--:|:-:|
+| 0 | 1 | 15 | C1 |
+| 2 | 1 | 13 | C1 |
+| 4 | 3 | 11 | C1 |
+| 6 | 5 | 9 | C1 |
+| 24 | 23 | 9 | C2 |
+| 26 | 25 | 11 | C2 |
+
+New centres: c1 = mean(0, 2, 4, 6) = **3**, c2 = mean(24, 26) = **25**.
+
+<!-- #endregion q4 -->
+<!-- #region q5 -->
+
+<svg class="fig" viewBox="0 0 520 360" role="img" aria-label="The training points and the test instance">
+<line class="ax" x1="30" y1="330" x2="506" y2="330"/>
+<line class="ax" x1="30" y1="330" x2="30" y2="12"/>
+<text class="lbl" x="268" y="354" text-anchor="middle">X</text>
+<text class="lbl" x="12" y="171" text-anchor="middle" transform="rotate(-90 12 171)">Y</text>
+<text class="ta" x="100" y="27.9" text-anchor="middle" style="font-size:15px;font-weight:600">+</text>
+<text class="ta" x="72" y="76.8" text-anchor="middle" style="font-size:15px;font-weight:600">+</text>
+<text class="ta" x="124.5" y="76.8" text-anchor="middle" style="font-size:15px;font-weight:600">+</text>
+<text class="ta" x="100" y="112.4" text-anchor="middle" style="font-size:15px;font-weight:600">+</text>
+<text class="ta" x="138.5" y="125.8" text-anchor="middle" style="font-size:15px;font-weight:600">+</text>
+<text class="ta" x="173.5" y="106.2" text-anchor="middle" style="font-size:15px;font-weight:600">+</text>
+<text class="ta" x="201.5" y="106.2" text-anchor="middle" style="font-size:15px;font-weight:600">+</text>
+<text class="ta" x="212" y="35" text-anchor="middle" style="font-size:15px;font-weight:600">+</text>
+<text class="ta" x="210.6" y="63.5" text-anchor="middle" style="font-size:15px;font-weight:600">+</text>
+<text class="ta" x="89.5" y="170.3" text-anchor="middle" style="font-size:15px;font-weight:600">+</text>
+<text class="ta" x="119.6" y="181" text-anchor="middle" style="font-size:15px;font-weight:600">+</text>
+<text class="ta" x="175.6" y="176.5" text-anchor="middle" style="font-size:15px;font-weight:600">+</text>
+<text class="ta" x="224.6" y="189.9" text-anchor="middle" style="font-size:15px;font-weight:600">+</text>
+<text class="ta" x="249.1" y="177.4" text-anchor="middle" style="font-size:15px;font-weight:600">+</text>
+<text class="ta" x="283.4" y="177.4" text-anchor="middle" style="font-size:15px;font-weight:600">+</text>
+<text class="ta" x="307.9" y="168.5" text-anchor="middle" style="font-size:15px;font-weight:600">+</text>
+<text class="ta" x="94.4" y="204.1" text-anchor="middle" style="font-size:15px;font-weight:600">+</text>
+<text class="ta" x="150.4" y="216.6" text-anchor="middle" style="font-size:15px;font-weight:600">+</text>
+<text class="ta" x="223.9" y="223.7" text-anchor="middle" style="font-size:15px;font-weight:600">+</text>
+<text class="ta" x="198" y="248.6" text-anchor="middle" style="font-size:15px;font-weight:600">+</text>
+<text class="ta" x="249.1" y="243.3" text-anchor="middle" style="font-size:15px;font-weight:600">+</text>
+<text class="ta" x="283.4" y="201.5" text-anchor="middle" style="font-size:15px;font-weight:600">+</text>
+<text class="ta" x="311.4" y="268.2" text-anchor="middle" style="font-size:15px;font-weight:600">+</text>
+<text class="ta" x="319.1" y="315.4" text-anchor="middle" style="font-size:15px;font-weight:600">+</text>
+<text class="ta" x="401.7" y="210.4" text-anchor="middle" style="font-size:15px;font-weight:600">+</text>
+<text class="ta" x="412.9" y="200.6" text-anchor="middle" style="font-size:15px;font-weight:600">+</text>
+<text class="ta" x="411.5" y="221.9" text-anchor="middle" style="font-size:15px;font-weight:600">+</text>
+<text class="tb" x="342.9" y="65.3" text-anchor="middle" style="font-size:15px;font-weight:600">−</text>
+<text class="tb" x="394" y="48.3" text-anchor="middle" style="font-size:15px;font-weight:600">−</text>
+<text class="tb" x="419.9" y="36.8" text-anchor="middle" style="font-size:15px;font-weight:600">−</text>
+<text class="tb" x="406.6" y="137.4" text-anchor="middle" style="font-size:15px;font-weight:600">−</text>
+<text class="tb" x="412.9" y="146.3" text-anchor="middle" style="font-size:15px;font-weight:600">−</text>
+<circle class="hollow" cx="403.1" cy="156.4" r="4.5"/>
+<circle class="m" cx="403.1" cy="156.4" r="23.7"/>
+<circle class="m" cx="403.1" cy="156.4" r="50.7"/>
+<circle class="m" cx="403.1" cy="156.4" r="82.5"/>
+<text x="413.1" y="148.4" text-anchor="start">test</text>
+</svg>
+
+<p class="fig-cap">Redrawn from the paper (positions read off the scan, so approximate). Rings enclose the 1, 3 and 5 nearest points.</p>
+
+**The nearest training points, in order** (distances in the plot’s units, measured on the redrawn figure):
+
+| Rank | Class | Distance |
+|:-:|:-:|--:|
+| 1 | − | 0.42 |
+| 2 | − | 0.58 |
+| 3 | + | 0.96 |
+| 4 | + | 1.17 |
+| 5 | + | 1.46 |
+| 6 | + | 2.01 |
+| 7 | + | 2.54 |
+
+- **K = 1:** 0 × (+), 1 × (−) → **−**
+- **K = 3:** 1 × (+), 2 × (−) → **−**
+- **K = 5:** 3 × (+), 2 × (−) → **+**
+
+The whole training set has only **5** negatives and **27** positives.
+
+<!-- #endregion q5 -->

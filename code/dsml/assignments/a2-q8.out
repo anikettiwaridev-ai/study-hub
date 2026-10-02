@@ -1,0 +1,15 @@
+Sorted by Marks (descending):
+      Name Dept  Marks  Age
+2  Chirag  CSE     92   20
+5   Farah  CSE     88   20
+0    Amit  CSE     85   20
+1  Bhavna  ECE     78   21
+4   Eshan  ECE     74   21
+3   Divya   ME     61   22
+
+Average marks per Dept:
+ Dept
+CSE    88.333333
+ECE    76.000000
+ME     61.000000
+Name: Marks, dtype: float64

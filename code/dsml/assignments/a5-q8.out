@@ -1,0 +1,21 @@
+Probabilities (first 5 rows):
+ [[0.0562 0.9438]
+ [0.9955 0.0045]
+ [0.967  0.033 ]
+ [0.3716 0.6284]
+ [0.9857 0.0143]]
+Columns mean: [0 1] -> [P(class 0), P(class 1)]
+Each row sums to: [1. 1. 1. 1. 1.]
+
+P(Purchased=1) for first 5: [0.9438 0.0045 0.033  0.6284 0.0143]
+
+Threshold check:
+    P(class 1)  Predicted  Actual
+0      0.9438          1       1
+1      0.0045          0       0
+2      0.0330          0       0
+3      0.6284          1       0
+4      0.0143          0       0
+5      0.9086          1       1
+6      0.4040          0       0
+7      0.9907          1       1

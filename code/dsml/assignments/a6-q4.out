@@ -1,0 +1,2 @@
+Train size: (120, 4) | Test size: (30, 4)
+Test class counts: {'Iris-setosa': 10, 'Iris-virginica': 10, 'Iris-versicolor': 10}

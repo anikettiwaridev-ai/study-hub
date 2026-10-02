@@ -1,0 +1,9 @@
+Shape: (6, 4)
+Columns: ['Name', 'Dept', 'Marks', 'Age']
+First 5 rows:
+      Name Dept  Marks  Age
+0    Amit  CSE     85   20
+1  Bhavna  ECE     78   21
+2  Chirag  CSE     92   20
+3   Divya   ME     61   22
+4   Eshan  ECE     74   21

@@ -1,0 +1,17 @@
+Shape: (150, 6)
+
+Missing values:
+ Id               0
+SepalLengthCm    0
+SepalWidthCm     0
+PetalLengthCm    0
+PetalWidthCm     0
+Species          0
+dtype: int64
+
+Class balance:
+ Species
+Iris-setosa        50
+Iris-versicolor    50
+Iris-virginica     50
+Name: count, dtype: int64

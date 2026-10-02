@@ -1,0 +1,2 @@
+X_train shape: (7, 4) | X_test shape: (2, 4)
+y_train shape: (7,) | y_test shape: (2,)

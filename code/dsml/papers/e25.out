@@ -1,0 +1,118 @@
+<!-- #region q1a -->
+
+**Trick: code the years** as u = year − 2007, so u = −2, −1, 0, 1, 2 and Σu = 0. Shifting x never changes the slope, and the sums stay tiny.
+
+| Year | u | y (sales) | u² | u·y |
+|:-:|:-:|:-:|:-:|:-:|
+| 2005 | −2 | 12 | 4 | −24 |
+| 2006 | −1 | 19 | 1 | −19 |
+| 2007 | 0 | 29 | 0 | 0 |
+| 2008 | 1 | 37 | 1 | 37 |
+| 2009 | 2 | 45 | 4 | 90 |
+| **Σ** | **0** | **142** | **10** | **84** |
+
+$$ \begin{aligned} a &= \frac{n\sum uy - \sum u \sum y}{n\sum u^2 - (\sum u)^2} = \frac{5(84) - (0)(142)}{5(10) - (0)^2} = \frac{420}{50} = 8.4 \\ b &= \bar y - a\,\bar u = 28.4 - 8.4(0) = 28.4 \end{aligned} $$
+
+So **y = 8.4u + 28.4**. Back in years (u = year − 2007): y = 8.4(year − 2007) + 28.4, i.e. **y = 8.4 × year − 16830.4** (a = 8.4, b = −16830.4).
+
+**(ii) 2012:** u = 2012 − 2007 = 5, so y = 8.4(5) + 28.4 = **70.4 million dollars**.
+
+<!-- #endregion q1a -->
+<!-- #region q1b -->
+
+min = 8, max = 20; mean μ = 53/4 = 13.25; population σ = √(Σ(x − μ)²/4) = √(21.6875) = 4.657.
+
+| Marks | Min-max: (x − min)/(max − min) | x′ | Z-score: (x − μ)/σ | z | z with sample σ = 5.3774 |
+|:-:|---|--:|---|--:|--:|
+| 8 | (8 − 8)/12 | **0** | (8 − 13.25)/4.657 | **−1.1273** | −0.9763 |
+| 10 | (10 − 8)/12 | **0.1667** | (10 − 13.25)/4.657 | **−0.6979** | −0.6044 |
+| 15 | (15 − 8)/12 | **0.5833** | (15 − 13.25)/4.657 | **0.3758** | 0.3254 |
+| 20 | (20 − 8)/12 | **1** | (20 − 13.25)/4.657 | **1.4494** | 1.2552 |
+
+Check: the min-max values run exactly from 0 to 1; the z-scores add up to 0. Use the population σ unless your teacher uses the sample one; write which you used.
+
+<!-- #endregion q1b -->
+<!-- #region q3a -->
+
+**(i) Euclidean distance** from the new customer (Age 42, Income 70) to every row:
+
+| ID | Age | Income | Buys | Distance | Value |
+|:-:|:-:|:-:|:-:|---|--:|
+| 1 | 25 | 40 | No | √((25 − 42)² + (40 − 70)²) = √1189 | 34.482 |
+| 2 | 30 | 60 | No | √((30 − 42)² + (60 − 70)²) = √244 | 15.62 |
+| 3 | 35 | 65 | Yes | √((35 − 42)² + (65 − 70)²) = √74 | 8.602 |
+| 4 | 40 | 80 | Yes | √((40 − 42)² + (80 − 70)²) = √104 | 10.198 |
+| 5 | 45 | 60 | Yes | √((45 − 42)² + (60 − 70)²) = √109 | 10.44 |
+| 6 | 50 | 50 | No | √((50 − 42)² + (50 − 70)²) = √464 | 21.541 |
+| 7 | 55 | 90 | Yes | √((55 − 42)² + (90 − 70)²) = √569 | 23.854 |
+
+**(ii) Sort by distance** and take the 3 nearest:
+
+| Rank | ID | Buys | Distance |
+|:-:|:-:|:-:|--:|
+| 1 | 3 | Yes | 8.602 |
+| 2 | 4 | Yes | 10.198 |
+| 3 | 5 | Yes | 10.44 |
+| 4 | 2 | No | 15.62 |
+| 5 | 6 | No | 21.541 |
+| 6 | 7 | Yes | 23.854 |
+| 7 | 1 | No | 34.482 |
+
+**(iii) Vote:** the 3 nearest are IDs 3, 4, 5, labelled Yes, Yes, Yes. Yes = 3, No = 0, so the prediction is **Yes: the customer buys**.
+
+<!-- #endregion q3a -->
+<!-- #region q3b -->
+
+**(i) Entropy of the whole dataset:** 5 Yes, 2 No out of 7.
+
+$$ H(S) = -\tfrac{5}{7}\log_2\tfrac{5}{7} - \tfrac{2}{7}\log_2\tfrac{2}{7} = 0.3467 + 0.5164 = \mathbf{0.8631} $$
+
+**(ii) Information gain of each attribute.**
+
+| Age | Yes | No | Entropy | Weighted |
+|---|:-:|:-:|--:|--:|
+| ≤30 | 1 | 1 | 1 | 2/7 × 1 = 0.2857 |
+| 31-40 | 2 | 0 | 0 | 2/7 × 0 = 0 |
+| >40 | 2 | 1 | 0.9183 | 3/7 × 0.9183 = 0.3936 |
+
+Gain(Age) = 0.8631 − 0.6793 = **0.1839**
+
+| Income | Yes | No | Entropy | Weighted |
+|---|:-:|:-:|--:|--:|
+| High | 2 | 1 | 0.9183 | 3/7 × 0.9183 = 0.3936 |
+| Medium | 1 | 0 | 0 | 1/7 × 0 = 0 |
+| Low | 2 | 1 | 0.9183 | 3/7 × 0.9183 = 0.3936 |
+
+Gain(Income) = 0.8631 − 0.7871 = **0.076**
+
+| Student | Yes | No | Entropy | Weighted |
+|---|:-:|:-:|--:|--:|
+| No | 2 | 1 | 0.9183 | 3/7 × 0.9183 = 0.3936 |
+| Yes | 3 | 1 | 0.8113 | 4/7 × 0.8113 = 0.4636 |
+
+Gain(Student) = 0.8631 − 0.8571 = **0.006**
+
+**(iii)** Age 0.1839, Income 0.076, Student 0.006. **Age** has the highest gain, so it is the root.
+
+<!-- #endregion q3b -->
+<!-- #region q4a -->
+
+| Class c | P(c) | P(Red ∣ c) | P(Long ∣ c) | P(c) · P(Red ∣ c) · P(Long ∣ c) |
+|---|:-:|:-:|:-:|---|
+| Apple | 3/5 | 2/3 | 0/3 | 3/5 × 2/3 × 0/3 = **0** |
+| Chilli | 1/5 | 1/1 | 1/1 | 1/5 × 1/1 × 1/1 = **0.2** |
+| Cucumber | 1/5 | 0/1 | 1/1 | 1/5 × 0/1 × 1/1 = **0** |
+
+The largest score is **Chilli** (0.2), so the new object (Red, Long) is classified as **Chilli**.
+
+**With Laplace smoothing** (add 1 to every count; each feature has 2 values, so add 2 to the denominator), no probability is exactly 0:
+
+| Class c | P(Red ∣ c) | P(Long ∣ c) | Score = P(c) × both |
+|---|:-:|:-:|--:|
+| Apple | (2 + 1)/(3 + 2) = 3/5 | (0 + 1)/(3 + 2) = 1/5 | 0.072 |
+| Chilli | (1 + 1)/(1 + 2) = 2/3 | (1 + 1)/(1 + 2) = 2/3 | 0.0889 |
+| Cucumber | (0 + 1)/(1 + 2) = 1/3 | (1 + 1)/(1 + 2) = 2/3 | 0.0444 |
+
+Chilli still wins. Smoothing matters when a zero would otherwise wipe out a class that should win.
+
+<!-- #endregion q4a -->

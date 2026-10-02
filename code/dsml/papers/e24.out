@@ -1,0 +1,177 @@
+<!-- #region q1b -->
+
+**Means:** x̄ = 26/5 = 5.2, ȳ = 42/5 = 8.4.
+
+| Point | x | y | x − x̄ | y − ȳ | (x − x̄)(y − ȳ) | (x − x̄)² | (y − ȳ)² |
+|:-:|:-:|:-:|--:|--:|--:|--:|--:|
+| 1 | 2 | 3 | −3.2 | −5.4 | 17.28 | 10.24 | 29.16 |
+| 2 | 4 | 6 | −1.2 | −2.4 | 2.88 | 1.44 | 5.76 |
+| 3 | 5 | 8 | −0.2 | −0.4 | 0.08 | 0.04 | 0.16 |
+| 4 | 7 | 11 | 1.8 | 2.6 | 4.68 | 3.24 | 6.76 |
+| 5 | 8 | 14 | 2.8 | 5.6 | 15.68 | 7.84 | 31.36 |
+| **Σ** | 26 | 42 | 0 | 0 | **40.6** | **22.8** | **73.2** |
+
+$$ r = \frac{\sum (x - \bar x)(y - \bar y)}{\sqrt{\sum (x - \bar x)^2 \, \sum (y - \bar y)^2}} = \frac{40.6}{\sqrt{22.8 \times 73.2}} = \frac{40.6}{40.8529} = \mathbf{0.9938} $$
+
+<!-- #endregion q1b -->
+<!-- #region q2b -->
+
+**Pass 1, all 12 values.** Mean μ = 1175/12 = 97.917. Population standard deviation σ = √(Σ(x − μ)²/n) = 123.134. Then z = (x − μ)/σ:
+
+| x | z = (x − μ)/σ | Beyond ±3? |
+|--:|--:|---|
+| 55 | −0.349 |  |
+| 57 | −0.332 |  |
+| 500 | 3.265 | **outlier** |
+| 61 | −0.3 |  |
+| 62 | −0.292 |  |
+| 65 | −0.267 |  |
+| 67 | −0.251 |  |
+| 70 | −0.227 |  |
+| 72 | −0.21 |  |
+| 73 | −0.202 |  |
+| 95 | −0.024 |  |
+| −2 | −0.811 |  |
+
+Only **500** crosses the cut-off (z = 3.265). But look at −2: z = −0.811. It is plainly an outlier, yet it looks ordinary because 500 has dragged the mean up and blown up σ. This is called **masking**.
+
+**Pass 2, after removing 500.** μ = 61.364, σ = 22.512:
+
+| x | z | Beyond ±3 (or ±2)? |
+|--:|--:|---|
+| 55 | −0.283 |  |
+| 57 | −0.194 |  |
+| 61 | −0.016 |  |
+| 62 | 0.028 |  |
+| 65 | 0.162 |  |
+| 67 | 0.25 |  |
+| 70 | 0.384 |  |
+| 72 | 0.472 |  |
+| 73 | 0.517 |  |
+| 95 | 1.494 |  |
+| −2 | −2.815 | beyond ±2 |
+
+Now **−2** stands out: z = −2.815. With the strict cut-off of 3 it is still just inside; with the other common cut-off, 2, it is flagged. 95 (z = 1.494) is not an outlier.
+
+With the sample standard deviation (÷(n − 1)) instead, pass 1 gives σ = 128.609 and z(500) = 3.126: the same conclusion.
+
+<!-- #endregion q2b -->
+<!-- #region q3b -->
+
+"Positive" = malicious (the thing the filter is looking for).
+
+|  | Predicted malicious | Predicted benign | Total |
+|---|:-:|:-:|:-:|
+| **Actual malicious** | TP = 850 | FN = 150 | 1000 |
+| **Actual benign** | FP = 500 | TN = 8500 | 9000 |
+| **Total** | 1350 | 8650 | 10000 |
+
+| Metric | Formula | Substitution | Value |
+|---|---|---|--:|
+| Precision | TP / (TP + FP) | 850 / 1350 | **0.6296** |
+| Recall (sensitivity, TPR) | TP / (TP + FN) | 850 / 1000 | **0.85** |
+| F1 score | 2TP / (2TP + FP + FN) | 1700 / 2350 | **0.7234** |
+| Specificity (TNR) | TN / (TN + FP) | 8500 / 9000 | **0.9444** |
+| False negative rate | FN / (FN + TP) = 1 − recall | 150 / 1000 | **0.15** |
+| Accuracy (not asked) | (TP + TN) / total | 9350 / 10000 | 0.935 |
+
+<!-- #endregion q3b -->
+<!-- #region q4a -->
+
+**Step 1.** The ridge weights solve $(X^TX + \lambda I)\,w = X^Ty$ (no intercept: the question gives only X and y).
+
+$$ X^TX = \begin{bmatrix}66 & 78 & 90 \\ 78 & 93 & 108 \\ 90 & 108 & 126\end{bmatrix}, \qquad X^Ty = \begin{bmatrix}30 \\ 36 \\ 42\end{bmatrix} $$
+
+Note $\det(X^TX) = 0$: the columns of X are dependent (column 3 = 2 × column 2 − column 1), so ordinary least squares has **no unique solution**. Ridge fixes exactly this.
+
+$$ X^TX + 10I = \begin{bmatrix}76 & 78 & 90 \\ 78 & 103 & 108 \\ 90 & 108 & 136\end{bmatrix} $$
+
+**Step 2. Solve by elimination** (R2 ← R2 − (78/76)R1, R3 ← R3 − (90/76)R1, then clear column 2):
+
+$$ \left[\begin{array}{ccc|c}76 & 78 & 90 & 30 \\ 0 & 22.9474 & 15.6316 & 5.2105 \\ 0 & 0 & 18.7729 & 2.9243\end{array}\right] $$
+
+Back-substitute from the bottom row up:
+
+$$ w_3 = \frac{2.9243}{18.7729} = 0.1558,\quad w_2 = 0.1210,\quad w_1 = 0.0861 $$
+
+**Ridge weights: w = (0.0861, 0.1210, 0.1558).**
+
+**Step 3. Predict the three training examples**, ŷ = Xw:
+
+| Row | x | y | ŷ = Xw | error y − ŷ |
+|:-:|:-:|:-:|--:|--:|
+| 1 | 1, 2, 3 | 1 | **0.7954** | 0.2046 |
+| 2 | 4, 5, 6 | 2 | **1.8839** | 0.1161 |
+| 3 | 7, 8, 9 | 3 | **2.9725** | 0.0275 |
+
+The penalty shrinks the weights towards 0, so the fit is pulled towards the middle: the small y is over-predicted and the large y under-predicted. That bias is the price of a stable, unique solution.
+
+<!-- #endregion q4a -->
+<!-- #region q4b -->
+
+$f(x, y, z) = 2x^2 - y + \dfrac{z^3}{3}$, so the gradient is $\nabla f = \left(\dfrac{\partial f}{\partial x}, \dfrac{\partial f}{\partial y}, \dfrac{\partial f}{\partial z}\right) = (4x,\; -1,\; z^2)$. Update rule: each variable ← variable − γ × its partial derivative, all from the old values.
+
+|  | x | y | z | ∂f/∂x = 4x (old) | ∂f/∂y | ∂f/∂z = z² (old) | f(x, y, z) |
+|---|--:|--:|--:|--:|--:|--:|--:|
+| start | 0.100000 | 0.200000 | 0.300000 |  |  |  | −0.171 |
+| iteration 1 | 0.096000 | 0.210000 | 0.299100 | 0.4 | −1 | 0.09 | −0.182649 |
+| iteration 2 | 0.092160 | 0.220000 | 0.298205 | 0.384 | −1 | 0.089461 | −0.194174 |
+
+- **Iteration 1:** x = 0.1 − 0.01 × 0.4 = 0.096;  y = 0.2 − 0.01 × (−1) = 0.21;  z = 0.3 − 0.01 × 0.09 = 0.2991
+- **Iteration 2:** x = 0.096 − 0.01 × 0.384 = 0.09216;  y = 0.21 − 0.01 × (−1) = 0.22;  z = 0.2991 − 0.01 × 0.089461 = 0.298205
+
+<!-- #endregion q4b -->
+<!-- #region q4c -->
+
+**Entropy of the whole set** (9 Yes, 5 No out of 14):
+
+$$ H(S) = -\tfrac{9}{14}\log_2\tfrac{9}{14} - \tfrac{5}{14}\log_2\tfrac{5}{14} = 0.9403 $$
+
+**Outlook**
+
+| Outlook | Yes | No | Entropy | Weighted |
+|---|:-:|:-:|--:|--:|
+| Sunny | 2 | 3 | 0.971 | 5/14 × 0.971 = 0.3468 |
+| Overcast | 4 | 0 | 0 | 4/14 × 0 = 0 |
+| Rainy | 3 | 2 | 0.971 | 5/14 × 0.971 = 0.3468 |
+
+Gain(Outlook) = 0.9403 − 0.6935 = **0.2467**
+
+**Temperature**
+
+| Temperature | Yes | No | Entropy | Weighted |
+|---|:-:|:-:|--:|--:|
+| Hot | 2 | 2 | 1 | 4/14 × 1 = 0.2857 |
+| Mild | 4 | 2 | 0.9183 | 6/14 × 0.9183 = 0.3936 |
+| Cool | 3 | 1 | 0.8113 | 4/14 × 0.8113 = 0.2318 |
+
+Gain(Temperature) = 0.9403 − 0.9111 = **0.0292**
+
+**Humidity**
+
+| Humidity | Yes | No | Entropy | Weighted |
+|---|:-:|:-:|--:|--:|
+| High | 3 | 4 | 0.9852 | 7/14 × 0.9852 = 0.4926 |
+| Normal | 6 | 1 | 0.5917 | 7/14 × 0.5917 = 0.2958 |
+
+Gain(Humidity) = 0.9403 − 0.7885 = **0.1518**
+
+**Wind**
+
+| Wind | Yes | No | Entropy | Weighted |
+|---|:-:|:-:|--:|--:|
+| Weak | 6 | 2 | 0.8113 | 8/14 × 0.8113 = 0.4636 |
+| Strong | 3 | 3 | 1 | 6/14 × 1 = 0.4286 |
+
+Gain(Wind) = 0.9403 − 0.8922 = **0.0481**
+
+| Attribute | Information gain |
+|---|--:|
+| Outlook | **0.2467** |
+| Temperature | 0.0292 |
+| Humidity | 0.1518 |
+| Wind | 0.0481 |
+
+**Outlook** has the largest information gain, so it goes at the root.
+
+<!-- #endregion q4c -->

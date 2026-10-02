@@ -680,3 +680,41 @@ a.hub-name:hover { text-decoration: underline; }
   padding: 1px 6px;
   border-radius: 3px;
 }
+
+/* ---------- Figures: inline SVG drawn by the code/dsml scripts ---------- */
+
+.vp-doc svg.fig {
+  display: block;
+  width: 100%;
+  max-width: 640px;
+  height: auto;
+  margin: 18px auto 6px;
+  font-family: var(--vp-font-family-base);
+  overflow: visible;
+}
+.vp-doc svg.fig.narrow { max-width: 420px; }
+.fig text { fill: var(--vp-c-text-2); font-size: 11px; }
+.fig text.lbl { fill: var(--vp-c-text-1); font-size: 12px; font-weight: 600; }
+.fig text.ta { fill: var(--hub-link); }
+.fig text.tb { fill: var(--hub-margin); }
+.fig text.tc { fill: var(--hub-ok); }
+.fig .ax { stroke: var(--vp-c-text-3); stroke-width: 1; fill: none; }
+.fig .grid { stroke: var(--hub-rule); stroke-width: 1; fill: none; }
+.fig .a { stroke: var(--hub-link); stroke-width: 2; fill: none; }
+.fig .b { stroke: var(--hub-margin); stroke-width: 2; fill: none; }
+.fig .c { stroke: var(--hub-ok); stroke-width: 2; fill: none; }
+.fig .m { stroke: var(--vp-c-text-3); stroke-width: 1.2; stroke-dasharray: 4 3; fill: none; }
+.fig .fa { fill: var(--hub-link); stroke: none; }
+.fig .fb { fill: var(--hub-margin); stroke: none; }
+.fig .fc { fill: var(--hub-ok); stroke: none; }
+.fig .fm { fill: var(--vp-c-text-3); stroke: none; }
+.fig .hollow { fill: var(--hub-paper); stroke: var(--vp-c-text-1); stroke-width: 1.5; }
+.fig .area { fill: var(--vp-c-brand-soft); stroke: none; }
+.fig .box { fill: var(--hub-surface); stroke: var(--vp-c-border); stroke-width: 1; }
+.vp-doc .fig-cap { margin: 0 auto 18px; max-width: 640px; font-size: 0.85rem; color: var(--vp-c-text-2); text-align: center; }
+.vp-doc .fig-row { display: grid; grid-template-columns: repeat(3, minmax(0, 1fr)); gap: 8px; margin: 18px 0 6px; }
+.vp-doc .fig-row svg.fig { margin: 0; }
+@media (max-width: 560px) {
+  .vp-doc .fig-row { grid-template-columns: 1fr; }
+  .vp-doc .fig-row svg.fig { max-width: 320px; margin: 0 auto; }
+}

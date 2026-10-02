@@ -1,0 +1,47 @@
+After mean imputation (Age, Salary):
+      Age   Salary
+0  25.00  50000.0
+1  32.00  62000.0
+2  32.25  58000.0
+3  28.00  68750.0
+4  41.00  91000.0
+5  36.00  75000.0
+6  32.25  67000.0
+7  28.00  68750.0
+8  23.00  48000.0
+9  45.00  99000.0
+
+Median-imputed version:
+     Age   Salary
+0  25.0  50000.0
+1  32.0  62000.0
+2  30.0  58000.0
+3  28.0  64500.0
+4  41.0  91000.0
+5  36.0  75000.0
+6  30.0  67000.0
+7  28.0  64500.0
+8  23.0  48000.0
+9  45.0  99000.0
+
+After mode imputation (City):
+ 0     Delhi
+1    Mumbai
+2     Delhi
+3      Pune
+4     Delhi
+5    Mumbai
+6     Delhi
+7      Pune
+8      Pune
+9     Delhi
+Name: City, dtype: str
+
+Missing values now:
+ Name          0
+Age           0
+Salary        0
+City          0
+Department    0
+Experience    0
+dtype: int64

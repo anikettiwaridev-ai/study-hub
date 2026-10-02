@@ -1,0 +1,106 @@
+First 5 rows:
+    Id  SepalLengthCm  SepalWidthCm  PetalLengthCm  PetalWidthCm      Species
+0   1            5.1           3.5            1.4           0.2  Iris-setosa
+1   2            4.9           3.0            1.4           0.2  Iris-setosa
+2   3            4.7           3.2            1.3           0.2  Iris-setosa
+3   4            4.6           3.1            1.5           0.2  Iris-setosa
+4   5            5.0           3.6            1.4           0.2  Iris-setosa
+
+Shape: (150, 6)
+
+Missing values:
+ Id               0
+SepalLengthCm    0
+SepalWidthCm     0
+PetalLengthCm    0
+PetalWidthCm     0
+Species          0
+dtype: int64
+
+Class balance:
+ Species
+Iris-setosa        50
+Iris-versicolor    50
+Iris-virginica     50
+Name: count, dtype: int64
+
+X shape: (150, 4) | y shape: (150,)
+Feature columns: ['SepalLengthCm', 'SepalWidthCm', 'PetalLengthCm', 'PetalWidthCm']
+
+Train size: (120, 4) | Test size: (30, 4)
+Test class counts: {'Iris-setosa': 10, 'Iris-virginica': 10, 'Iris-versicolor': 10}
+
+Learned means : [5.842 3.048 3.77  1.205]
+Learned scales: [0.837 0.447 1.761 0.759]
+
+Model trained (k = 5).
+Samples stored inside the model: 120
+
+Predicted (first 10): ['Iris-setosa', 'Iris-virginica', 'Iris-versicolor', 'Iris-versicolor', 'Iris-setosa', 'Iris-versicolor', 'Iris-setosa', 'Iris-setosa', 'Iris-virginica', 'Iris-versicolor']
+Actual    (first 10): ['Iris-setosa', 'Iris-virginica', 'Iris-versicolor', 'Iris-versicolor', 'Iris-setosa', 'Iris-versicolor', 'Iris-setosa', 'Iris-setosa', 'Iris-virginica', 'Iris-versicolor']
+
+First test flower - its 5 nearest training neighbours:
+   distance 0.2109  ->  Iris-setosa
+   distance 0.2310  ->  Iris-setosa
+   distance 0.3465  ->  Iris-setosa
+   distance 0.4987  ->  Iris-setosa
+   distance 0.4987  ->  Iris-setosa
+
+Accuracy: 0.9333
+
+Confusion Matrix (rows = actual, cols = predicted):
+                 Iris-setosa  Iris-versicolor  Iris-virginica
+Iris-setosa               10                0               0
+Iris-versicolor            0               10               0
+Iris-virginica             0                2               8
+
+Classification Report:
+                  precision    recall  f1-score   support
+
+    Iris-setosa       1.00      1.00      1.00        10
+Iris-versicolor       0.83      1.00      0.91        10
+ Iris-virginica       1.00      0.80      0.89        10
+
+       accuracy                           0.93        30
+      macro avg       0.94      0.93      0.93        30
+   weighted avg       0.94      0.93      0.93        30
+
+
+ k | test accuracy
+---+--------------
+ 1 | 0.9667
+ 2 | 0.9333
+ 3 | 0.9333
+ 4 | 0.9333
+ 5 | 0.9333
+ 6 | 0.9333
+ 7 | 0.9667
+ 8 | 0.9333
+ 9 | 0.9667
+10 | 0.9667
+11 | 0.9667
+12 | 0.9667
+13 | 0.9667
+14 | 0.9667
+15 | 0.9667
+
+Best k on the test set: 1 with accuracy 0.9667
+
+Cross-validated accuracy on training set:
+ 1 | 0.9417
+ 2 | 0.9583
+ 3 | 0.9583
+ 4 | 0.9583
+ 5 | 0.9667
+ 6 | 0.9667
+ 7 | 0.9583
+ 8 | 0.9583
+ 9 | 0.9583
+10 | 0.9667
+11 | 0.9583
+12 | 0.9667
+13 | 0.9500
+14 | 0.9583
+15 | 0.9500
+Best k by 5-fold CV: 5
+Test accuracy of CV-chosen k: 0.9333

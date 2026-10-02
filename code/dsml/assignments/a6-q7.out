@@ -1,0 +1,9 @@
+Predicted (first 10): ['Iris-setosa', 'Iris-virginica', 'Iris-versicolor', 'Iris-versicolor', 'Iris-setosa', 'Iris-versicolor', 'Iris-setosa', 'Iris-setosa', 'Iris-virginica', 'Iris-versicolor']
+Actual    (first 10): ['Iris-setosa', 'Iris-virginica', 'Iris-versicolor', 'Iris-versicolor', 'Iris-setosa', 'Iris-versicolor', 'Iris-setosa', 'Iris-setosa', 'Iris-virginica', 'Iris-versicolor']
+
+First test flower - its 5 nearest training neighbours:
+   distance 0.2109  ->  Iris-setosa
+   distance 0.2310  ->  Iris-setosa
+   distance 0.3465  ->  Iris-setosa
+   distance 0.4987  ->  Iris-setosa
+   distance 0.4987  ->  Iris-setosa
